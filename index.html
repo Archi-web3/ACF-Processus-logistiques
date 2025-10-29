@@ -1292,7 +1292,7 @@ Fleet Follow Up, fiches de consommation, rapports mensuels."
 
      <script>
    document.addEventListener("DOMContentLoaded", function () {
-    fetch('processus_logistiques.json')
+    fetch('/processus_logistiques.json')
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById("frise-gestion-stocks");
