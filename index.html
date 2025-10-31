@@ -399,6 +399,10 @@
             display: block;
             /* Les éléments de liste s'affichent en bloc */
         }
+        /* cacher la localisation dans la vue principale */
+.localisation {
+  display: none;
+}
     </style>
 </head>
 
@@ -767,37 +771,46 @@
             overlay.style.display = 'none'; // Cacher la popup
         }
 
-      function createProcessusElement(item, sectionTitle) {
-    const processus = document.createElement("div");
-    processus.className = `processus ${sectionTitle.toLowerCase().replace(/ /g, "-")}`;
-    processus.dataset.actors = getActorsString(item);
-    processus.dataset.typeControle = item["Type de contrôle"];
-    processus.dataset.popupContent = getPopupContent(item);
-    processus.dataset.imageUrl = item["Image URL"] || '';
+     function createProcessusElement(item, sectionTitle) {
+        const processus = document.createElement("div");
+        processus.className = `processus ${sectionTitle.toLowerCase().replace(/ /g, "-")}`;
+        processus.dataset.actors = getActorsString(item);
+        processus.dataset.typeControle = item["Type de contrôle"];  // Ajout
+        processus.dataset.popupContent = getPopupContent(item);
+        processus.dataset.imageUrl = item["Image URL"] || '';
 
-    // Fichier PDF et page
-    const pdfFile = item["pdfFile"] || "default.pdf";
-    const pdfPage = item["pdfPage"] || 1;
+        const pdfFile = item["pdfFile"] || "default.pdf";
+        const pdfPage = item["pdfPage"] || 1;
 
-    // Icône spécifique selon la propriété 'icon' du JSON
-    const iconClass = item["Icone"] || "fa-cogs"; // Utiliser "Icone" au lieu de "icon"
-    const iconHtml = `<i class="fas ${iconClass}"></i>`;
+        const iconClass = item["Icone"] || "fa-cogs";
+        const iconHtml = `<i class="fas ${iconClass}"></i>`;
 
-    // Petite loupe pour visualiser le PDF
-    const iconLoupe =
-        `<button onclick="ouvrirPdf('${pdfFile}#page=${pdfPage}')" style="margin-left: 10px; background: none; border: none; cursor: pointer; color: rgb(0, 95, 182) !important;"><i class="fas fa-search blue-loupe"></i></button>`;
+        const iconLoupe = `<button onclick="ouvrirPdf('${pdfFile}#page=${pdfPage}')" style="margin-left: 10px; background: none; border: none; cursor: pointer; color: rgb(0, 95, 182) !important;"><i class="fas fa-search blue-loupe"></i></button>`;
 
-    // Construire le contenu du processus
-    processus.innerHTML = `
-        <div class="actor-rectangle">${getActorsString(item)}</div>
-        ${iconHtml}
-        ${item["Activité"] || ''}
-        <div class="fleche"></div>
-        ${iconLoupe}
-    `;
+        // Localisations
+        let localisationIcons = [];
+        if (item["HQ"]) localisationIcons.push('<i class="fas fa-building" title="HQ" style="color: black;"></i>');
+        if (item["Coordination"]) localisationIcons.push('<i class="fas fa-map-marker-alt" title="Coordination" style="color: black;"></i>');
+        if (item["Base"]) localisationIcons.push('<i class="fas fa-home" title="Base" style="color: black;"></i>');
+        const localisationHtml = localisationIcons.join(' ');
 
-    return processus;
-}
+        // Assign dataset localisation booleans
+        processus.dataset.hq = item["HQ"] ? 'true' : 'false';
+        processus.dataset.coordination = item["Coordination"] ? 'true' : 'false';
+        processus.dataset.base = item["Base"] ? 'true' : 'false';
+
+        // Construction du contenu
+        processus.innerHTML = `
+            <div class="actor-rectangle">${getActorsString(item)}</div>
+            ${iconHtml}
+            ${item["Activité"] || ''}
+            <div class="fleche"></div>
+            ${iconLoupe}
+            <div class="localisation">${localisationHtml}</div>
+        `;
+        return processus;
+    }
+
 
 
 
