@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <title>Frise de Gestion des Stocks</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Processus Logistiques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        
         /* Styles CSS (identiques à votre code) */
         .default-image {
             text-align: center;
@@ -14,29 +16,24 @@
 
         .default-image img {
             max-width: 300px;
-            /* Ajuste la taille de l'image */
             height: auto;
         }
 
         .section-container {
-            display: none;
-            /* Masque toutes les sections par défaut */
+            /*display: none; /* Masque toutes les sections par défaut */
             margin-top: 50px;
-             margin-bottom: 20px; }
-        
+            margin-bottom: 20px;
+        }
 
         .agrandir-image {
             cursor: pointer;
             font-size: 1.2em;
             color: #4CAF50;
-            /* Couleur de l'icône */
             margin-left: 5px;
-            /* Espacement avec le texte */
         }
 
         .agrandir-image:hover {
             color: #45a049;
-            /* Couleur de l'icône au survol */
         }
 
         body {
@@ -44,8 +41,7 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            transition: background-color 0.3s,
-                color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body.dark-mode {
@@ -138,8 +134,7 @@
             width: 250px;
             background: #fff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease,
-                box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin: 10px;
             border: 1px solid #ddd;
         }
@@ -182,7 +177,6 @@
             z-index: 1;
             width: 250px;
             top: 80px;
-            /* Increase this value */
             left: 50%;
             transform: translateX(-50%);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -239,7 +233,8 @@
             transition: background-color 0.3s;
             font-size: 0.9em;
         }
-         .popup .close-button {
+
+        .popup .close-button {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -253,12 +248,10 @@
         /* Nouvel élément conteneur pour chaque section */
         .section-container {
             margin-top: 50px;
-            /* Ajustez cette valeur pour l'espacement */
         }
 
         .category-image {
             display: none;
-            /* visibilité contrôlée par ton JS */
             margin-top: 10px;
             text-align: center;
         }
@@ -275,7 +268,6 @@
         .actor-rectangle {
             position: absolute;
             top: -30px;
-            /* Adjust as needed */
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(255, 255, 255, 0.8);
@@ -285,13 +277,9 @@
             font-size: 0.8em;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             white-space: nowrap;
-            /* Prevent text from wrapping */
             display: block;
-            /* Affiche en permanence */
             z-index: 2;
-            /* Ensure it's above the process */
         }
-        
 
         /* Styles pour l'overlay */
         #overlay {
@@ -318,6 +306,99 @@
             font-size: 0.8em;
             text-align: left;
         }
+
+        .sous-processus-container {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            text-align: left;
+            /* Alignement du texte à gauche */
+        }
+
+        .sous-processus-container h3 {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: center;
+            /* Centrer le titre */
+        }
+
+        .popup .controle-popup {
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+        }
+
+        .blue-loupe {
+            color: rgb(0, 95, 182) !important;
+            font-size: 0.9em;
+            /* Ajustez cette valeur */
+        }
+
+        .processus .localisation {
+            margin-top: 5px;
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        .processus .localisation i {
+            margin-right: 5px;
+        }
+
+        .search-bar-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-bar {
+            text-align: left;
+            margin-right: 20px;
+            /* Ajouter un espacement entre la barre de recherche et l'aide */
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .search-help {
+            text-align: left;
+            font-size: 0.9em;
+            color: #555;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 600px;
+            /* Augmente la largeur maximale du conteneur */
+        }
+
+        .search-help ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding: 0;
+            /* Supprimer le padding de la liste */
+        }
+
+        .search-help ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding: 0;
+        }
+
+        .search-help li {
+            display: block;
+            /* Les éléments de liste s'affichent en bloc */
+        }
     </style>
 </head>
 
@@ -327,1068 +408,513 @@
         <h1>Processus Logistiques</h1>
     </div>
 
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Rechercher un processus ou un acteur...">
+
+    <div class="search-bar-container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher un processus ou un acteur...">
+        </div>
+        <div class="search-help">
+            <p>Vous pouvez rechercher par :</p>
+            <ul>
+                <li>Activité (ex: préparation entrepôt)
+                    <br>
+                <li>Acteurs (ex: gestionnaire stock)
+                    <br>
+                <li>Type de contrôle (ex: documentés, opérationnels, physique, automatique (digital))
+                    <br>
+                <li>Localisation du contrôle(ex: HQ <i class="fas fa-building" title="Siège"></i>, Coordination <i
+                        class="fas fa-map-marker-alt" title="Capitale"></i>, Base <i class="fas fa-home"
+                            title="Terrain"></i>)
+                    <br>
+            </ul>
+        </div>
+    </div>
+
+    </ul>
+    </div>
     </div>
 
     <div class="filters">
         <button data-filter="all" class="active">Tous</button>
-        <button data-filter="gestion-stocks">Gestion des stocks</button>
-        <button data-filter="gestion-achats">Gestion des achats</button>
-        <button data-filter="transport">Transport</button>
-        <button data-filter="equipements">Equipements</button>
-        <button data-filter="energie">Energie</button>
-        <button data-filter="dons">Dons en Nature</button>
-        <button data-filter="assurance-qualite">Assurance Qualité</button>
-        <button data-filter="gestion-parc-vehicules">Gestion Parc Véhicules</button>
-        <button data-filter="management-equipe-logistique">Management Équipe Logistique</button>
-        <button data-filter="gestion-batiments">Gestion des bâtiments</button>
+        <button data-filter="Chaîne d'appovisionnement">Chaîne d'approvisionnement</button>    
+        <button data-filter="Gestion de stocks">Gestion des stocks</button>
+        <button data-filter="Gestion de achats">Gestion des achats</button>
+        <button data-filter="Transport">Transport</button>
+        <button data-filter="Equipements">Equipements</button>
+        <button data-filter="Energie">Energie</button>
+        <button data-filter="Gestion des Dons en Nature (DEN) ">Dons en Nature</button>
+        <button data-filter="Assurance qualité">Assurance Qualité</button>
+        <button data-filter="Gestion de parc véhicules">Gestion Parc Véhicules</button>
+        <button data-filter="Management de l’équipe logistique">Management Équipe Logistique</button>
+        <button data-filter="Gestion des bâtiments">Gestion des bâtiments</button>
         <button data-filter="clear" class="active">Effacer les filtres</button>
-
     </div>
+
+    <button id="toggleView">Afficher toutes les activités</button>
+
 
     <div class="default-image">
         <img src="Processus.png" alt="Image par défaut">
     </div>
 
-    <!-- Section LOGISTIQUE - Gestion des Stocks -->
-    <div class="section-container" data-category="gestion-stocks">
-        <h2 style="text-align:center;">Gestion des Stocks</h2>
-        <div class="frise-container">
-            <div class="frise" id="frise-gestion-stocks">
-                <!-- Les processus de gestion des stocks seront générés ici -->
-            </div>
-            <div class="category-image" style="display:none;">
-                <img src="Logo_Stock2.png" alt="Image gestion stocks" />
-            </div>
-        </div>
+    <!-- Container pour les sections dynamiques -->
+    <div id="logistics-sections-container">
+        <!-- Les sections seront générées ici -->
     </div>
-
-
-    <!-- Section LOGISTIQUE - Gestion des Achats -->
-    <div class="section-container" data-category="gestion-achats">
-        <h2 style="text-align:center;">Gestion des Achats</h2>
-        <div class="frise-container">
-            <div class="frise">
-                <div class="processus gestion-achats" data-actors="RDD Log, RP, RDD Technique, RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Aligner les besoins techniques et logistiques pour une planification efficace des achats.<br><br><strong>Moyen de contrôle :</strong> Analyse conjointe logistique + programme/technique, validation stratégique.<br><br><strong>Outil utilisé :</strong> Matrice des risques ESG, Planning d’Achats par Projet (PAP), réunions interdépartementales, Statégie logistique"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-clipboard-list"></i>
-                    Stratégie et planification - Identification des besoins
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RP, RLog, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer une planification cohérente et suivie des achats.<br><br><strong>Moyen de contrôle :</strong> Un Plan d'approvisionnement remplie et validé intégrant l'ensemble des commandes principales.<br><br><strong>Outil utilisé :</strong> Plan d’approvisionnement, chronogramme, Suivi des Achats (SA)-LINK, réunions de validation"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-calendar-alt"></i>
-                    Stratégie et planification - Planification des achats
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="Demandeur, RDD Technique, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> S'assurer que les spécifications techniques sont complètes, précises et intègrent les critères d'évaluation pertinents.<br><br><strong>Moyen de contrôle :</strong> Vérification que les Lignes d'Achat (LA) soient assez détaillées et intégrant tout les critères d'évaluations : vérification des spécifications techniques, validation des critères d’évaluation, rejet si non conformes<br><br><strong>Outil utilisé :</strong> Recevoir un BoQ détaillé du PRG, ""LA"" détaillé dans LINK, contrat/SLA avec KPI, Guide des Achats Responsables, Matrice ESG, Fiche technique ACV, labels environnementaux"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-info-circle"></i>
-                    Définition des besoins - Spécifications techniques
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="Demandeur, RDD Technique"
-                    data-popup-content="<strong>Objectifs:</strong> Intégrer les considérations environnementales dans la définition des besoins.<br><br><strong>Moyen de contrôle :</strong> Intégration des critères durables dès la définition du besoin, justification des coûts additionnels<br><br><strong>Outil utilisé :</strong> Fiche technique ACV, Guide Achats Responsables, labels environnementaux"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-leaf"></i>
-                    Définition des besoins - Analyse du cycle de vie
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="Demandeur, RP, RDD Technique, Responsable Log, RDD Log, Rfinance, RDD Fin"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer que les demandes d'achat sont complètes, validées et correctement suivies.<br><br><strong>Moyen de contrôle :</strong> Validation multi-niveaux, rejet si DA incomplète, suivi dans SA<br><br><strong>Outil utilisé :</strong> DA (Excel ou LINK), Ligne d’Achat (LA), tableau des signatures autorisées, LINK"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-file-alt"></i>
-                    Demande d’achat (DA)
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLog, RDD Log, RDD Fin"
-                    data-popup-content="<strong>Objectifs:</strong> Déterminer le lieu d'achat le plus approprié en fonction des critères établis.<br><br><strong>Moyen de contrôle :</strong> Routage manuel dans LINK, création de DA selon niveau, regroupement des LA par RDD Log<br><br><strong>Outil utilisé :</strong> LINK (routing), HQPR, DABS, DAR/DAS, catalogue, stratégie d’approvisionnement"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-route"></i>
-                    Demande d’achat (DA) - Détermination du lieu d’achat
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RAppro, RLog, RDD log"
-                    data-popup-content="<strong>Objectifs:</strong> Identifier les fournisseurs potentiels et évaluer leur capacité à répondre aux besoins d'ACF.<br><br><strong>Moyen de contrôle :</strong> Étude de marché, vérification RSE.<br><br><strong>Outil utilisé :</strong> Rapport d'étude de marché, Rapport AMI, Dossier fournisseur (FEF), Rapport de préqualification fournisseurs, Mise à jour base de données fournisseurs"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-search"></i>
-                    Identification des fournisseurs - Etudes de marché
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RAppro, RLog, RDD log"
-                    data-popup-content="<strong>Objectifs:</strong> S'assurer que les fournisseurs répondent aux critères de qualité et de fiabilité établis.<br><br><strong>Moyen de contrôle :</strong> Dossier et rapport de préqualification avec une liste de fournisseur préqualifié et validé par le RDD Log<br><br><strong>Outil utilisé :</strong> Rapport de préqualification fournisseurs et base de données fournisseurs"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-users"></i>
-                    Identification des fournisseurs - Préqualification fournisseur
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RAppro, RLog, RDD log"
-                    data-popup-content="<strong>Objectifs:</strong> Obtenir des offres compétitives et conformes aux besoins.<br><br><strong>Moyen de contrôle :</strong> Vérification des critères d’évaluation, validation conjointe demandeur/logistique<br><br><strong>Outil utilisé :</strong> Grille d’évaluation, dossier de consultation, questionnaire fournisseur"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-check-square"></i>
-                    Sollicitation
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RDD Log, RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Définir la procédure d'achat appropriée en fonction des seuils et des règles établies.<br><br><strong>Moyen de contrôle :</strong> Vérification du seuil, validation par RDD Log et Finance<br><br><strong>Outil utilisé :</strong> PaP ( fait selon tableau des seuils des procédures d'achats, procédure adaptée (direct, négociée, AO))"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-list-ol"></i>
-                    Sollicitation - choix de la procédure d'achat
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="Comité d’évaluation, RLog, RDD Log, RFin, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Sélectionner l'offre la plus avantageuse en fonction des critères d'évaluation.<br><br><strong>Moyen de contrôle :</strong> Evaluation via logisticien ou formel via Comité d’évaluation, grille multicritères, validation technique/ESG/financière<br><br><strong>Outil utilisé :</strong> Grille d’évaluation, rapport d’évaluation, visite fournisseur, scoring ESG"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-clipboard-check"></i>
-                    Évaluation des offres
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLog, RDD Log, Rfin, RDD Fin, Siège"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer la conformité des achats aux règles et procédures internes et externes.<br><br><strong>Moyen de contrôle :</strong> Contrôle des seuils, validation externe selon montant (coordination/supérieur)<br><br><strong>Outil utilisé :</strong> Check list vérification DA, PaP, Bon pour Accord (BPA), validation LINK, tableau des signataires autorisés"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-file-signature"></i>
-                    Validation du dossier d’achat
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="RLog, RDD Log, Rfin, RDD Fin, CT, Directeur pays, Siège"
-                    data-popup-content="<strong>
-    Moyen de contrôle :</strong> Vérification juridique, signature par les parties<br><br><strong>Outil utilisé :</strong> Template ACF, CGA, Code de conduite fournisseur, annexes techniques"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-file-contract"></i>
-                    Contractualisation - préparation
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="RLog, RDD Log, Rfin, RDD Fin, CT, Directeur pays, Siège"
-                    data-popup-content="<strong>Objectifs:</strong> Formaliser l'accord contractuel et conserver une trace documentaire.<br><br><strong>Moyen de contrôle :</strong> Contrat doit être signé par tout les partis + archivage conforme<br><br><strong>Outil utilisé :</strong> Signature des documents suivants : Contrat, CGA, Code de conduite fournisseur, annexes techniques, feuille de route fournisseur + archivage papier/électronique, LINK"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-signature"></i>
-                    Contractualisation - signature et archivage
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="RLog, RDD Log, Rfin, RDD Fin, CT, Directeur pays, Siège"
-                    data-popup-content="<strong>Objectifs:</strong> Définir des conditions générales applicables à des achats récurrents.<br><br><strong>Moyen de contrôle :</strong> Conditions commerciales définies, suivi des montants engagés via LINK<br><br><strong>Outil utilisé :</strong> Accord cadre, suivi des commandes (SA -LINK), BCF, feuille de route fournisseur"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-handshake"></i>
-                    Contractualisation - accord cadre
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="Gestionnaire de stock, Demandeur, RDD Technique"
-                    data-popup-content="<strong>Objectifs:</strong> Vérifier la conformité des livraisons par rapport à la commande<br><br><strong>Moyen de contrôle :</strong> Contrôle qualité (avec spécifications technique et le demandeurs si besoin)<br><br><strong>Outil utilisé :</strong> Bon de livraison, Bon de réception, contrôle visuel, tests organoleptiques, LINK, checklist qualité, certificat de donation"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-check-circle"></i>
-                    Réception
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLog, RFin"
-                    data-popup-content="<strong>Objectifs:</strong> S'assurer de la conformité des factures et de la disponibilité des justificatifs.<br><br><strong>Moyen de contrôle :</strong> Vérification conformité facture, rapprochement avec réception<br><br><strong>Outil utilisé :</strong> Facture, Bon à payer, visa de réconciliation, LINK"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-money-check-alt"></i>
-                    Facturation et justificatifs
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLog, RFin"
-                    data-popup-content="<strong>Objectifs:</strong> Conserver une trace documentaire des achats conformément aux exigences légales et internes.<br><br><strong>Moyen de contrôle :</strong> Vérification de la complétude du dossier, conservation réglementaire<br><br><strong>Outil utilisé :</strong> Dossier d’achat complet, archivage papier/électronique, LINK, durée de conservation 10 ans"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-archive"></i>
-                    Archivage
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLog, RP, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Simplifier les achats de faible valeur ou urgents.<br><br><strong>Moyen de contrôle :</strong> Vérification catalogue, historique des prix, validation interne<br><br><strong>Outil utilisé :</strong> Catalogue LINK, historique des achats, Bon de Commande Fournisseur (BCF), Liste d’achat"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-shopping-cart"></i>
-                    Procédures d’achat - Achat direct
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="RLog, RFin, RP, Comité d’évaluation, RLR"
-                    data-popup-content="<strong>Objectifs:</strong> Obtenir des offres compétitives pour des achats spécifiques.<br><br><strong>Moyen de contrôle :</strong> Comparaison de devis, grille d’évaluation, validation BPA<br><br><strong>Outil utilisé :</strong> Demande de devis, Grille d’évaluation, BPA, BCF, Contrat"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-handshake"></i>
-                    Procédures d’achat - Procédure négociée
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="Comité d’évaluation, RDD Log, RFin, RLR, RP, RDD Technique"
-                    data-popup-content="<strong>Objectifs:</strong> Sélectionner les fournisseurs pour les achats importants et complexes.<br><br><strong>Moyen de contrôle :</strong> Comité d’évaluation, publication, ouverture des plis, rapport d’évaluation, validation siège<br><br><strong>Outil utilisé :</strong> Dossier d’appel d’offres, Grille d’évaluation AO, Rapport AO, BPA, Contrat, Déclaration d’objectivité"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-bullhorn"></i>
-                    Procédures d’achat - Appels d’offres (national/international/simplifié/restreint)
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Gérer et mettre à jour une base de données des fournisseurs.<br><br><strong>Moyen de contrôle :</strong> Mise à jour de la BDD, vérification des informations par le RDD Log, suivi des préqualifications<br><br><strong>Outil utilisé :</strong> BDD fournisseurs Excel ou LINK, Formulaire d’enregistrement, rapports de préqualification"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-database"></i>
-                    Gestion fournisseurs & contrats - BDD fournisseurs
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Collecter les informations nécessaires pour évaluer et enregistrer les fournisseurs.<br><br><strong>Moyen de contrôle :</strong> Vérification des documents légaux, bancaires, conformité ESG<br><br><strong>Outil utilisé :</strong> Formulaire d’enregistrement fournisseur, Code de conduite fournisseur"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-file-alt"></i>
-                    Gestion fournisseurs & contrats - Enregistrement fournisseur (via FEF)
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats"
-                    data-actors="Demandeur, RP, RLog, RDD log"
-                    data-popup-content="<strong>Objectifs:</strong> Définir les objectifs d'amélioration continue avec les fournisseurs.<br><br><strong>Moyen de contrôle :</strong> Définition d’objectifs SMART, suivi des engagements ESG<br><br><strong>Outil utilisé :</strong> Feuille de route fournisseur annexée au contrat, indicateurs de progrès"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-route"></i>
-                    Gestion fournisseurs & contrats - Feuille de route fournisseur
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLog, RP"
-                    data-popup-content="<strong>Objectifs:</strong> Évaluer la performance des fournisseurs et identifier les axes d'amélioration.<br><br><strong>Moyen de contrôle :</strong> Évaluation post-contrat, documentation des écarts, impact sur renouvellement<br><br><strong>Outil utilisé :</strong> Formulaire d’évaluation fournisseur, indicateurs de performance, rapport de suivi"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-star"></i>
-                    Gestion fournisseurs & contrats - Suivi de performance
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-achats" data-actors="RLR, RDD Log, Rfin, RLR"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer la conformité des achats aux exigences des bailleurs de fonds.<br><br><strong>Moyen de contrôle :</strong> Le RLR doit s'assurer que les règles bailleurs soient respectées : Revue des contrats bailleurs, validation des seuils et procédures, archivage conforme<br><br><strong>Outil utilisé :</strong> Fiches bailleurs, tableau des procédures, validation siège, archivage 10 ans, dérogations"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-gavel"></i>
-                    Suivi des règles des bailleurs - Vérification des règles bailleurs
-                    <div class="fleche"></div>
-                </div>
-            </div>
-        </div>
-        <div class="category-image" style="display:none;">
-            <img src="Logo_Procurement.png" alt="Image gestion achats" />
-        </div>
-    </div>
-    <!-- Section LOGISTIQUE - Transport -->
-    <div class="section-container" data-category="transport">
-        <h2 style="text-align:center;">Transport</h2>
-        <div class="frise-container">
-            <div class="frise">
-                <div class="processus transport" data-actors="RLog, RAppro"
-                    data-popup-content="<strong>Objectifs:</strong> Optimisation des coûts, respect des délais, sécurité des biens transportés, conformité aux réglementations.<br><br><strong>Moyen de contrôle:</strong> Analyse des besoins via PA, consultation des fournisseurs, comparaison des offres, validation par le responsable logistique.<br><br><strong>Outil utilisé:</strong> PA, Plan transport annexe"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-truck"></i>
-                    Planification du transport
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus transport" data-actors="RLog, RAppro, RDD Log, Transporteur"
-                    data-popup-content="<strong>Objectifs:</strong> Sélection de transporteurs fiables et compétents, minimisation des risques de perte ou de dommage, conformité aux exigences éthiques et environnementales.<br><br><strong>Moyen de contrôle:</strong> Étude de marché, vérification des références.<br><br><strong>Outil utilisé:</strong> Base de données des fournisseurs, FEF, formulaires d'évaluation des fournisseurs, rapports d'audit"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-id-card"></i>
-                    Sélection des transporteurs
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus transport" data-actors="RLog, RAppro, Gestionnaire de stocks"
-                    data-popup-content="<strong>Objectifs:</strong> Fluidité du transport, conformité aux réglementations douanières, traçabilité des biens transportés.<br><br><strong>Moyen de contrôle:</strong> Vérification des informations, utilisation de modèles standardisés ACF.<br><br><strong>Outil utilisé:</strong> Bon de livraison ou autres modèles de documents standardisés, check-list des informations à vérifier"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-file-invoice"></i>
-                    Préparation des documents de transport
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus transport"
-                    data-actors="Gestionnaire de stocks, Manutentionnaires, Chauffeur"
-                    data-popup-content="<strong>Objectifs:</strong> Sécurité des biens transportés, optimisation de l'espace, respect des règles de sécurité.<br><br><strong>Moyen de contrôle:</strong> Vérification des quantités et de la qualité des produits via BL préparé en avance.<br><br><strong>Outil utilisé:</strong> Bon de livraison, matériel de manutention adaptés, matériel de sécurisation du chargement"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-pallet"></i>
-                    Organisation du chargement
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus transport"
-                    data-actors="RLog, Gestionnaire de stock, Chauffeur, Transporteur"
-                    data-popup-content="<strong>Objectifs:</strong> Visibilité sur l'état du transport, anticipation des problèmes, résolution rapide des incidents, information des parties prenantes.<br><br><strong>Moyen de contrôle:</strong> Communication régulière avec le transporteur. Informer le destinataire, respecter l'Incoterm.<br><br><strong>Outil utilisé:</strong> Bon de livraison signé"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-map-marked-alt"></i>
-                    Suivi du transport
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus transport" data-actors="Gestionnaire de stocks, Manutentionnaires, RP"
-                    data-popup-content="<strong>Objectifs:</strong> Vérification de la bonne réception des biens, détection des anomalies, traçabilité.<br><br><strong>Moyen de contrôle:</strong> Vérification de la documentation (Bon de livraison/ bon de commande), la quantité et la qualité. Faire des remarques/réserves sur le BL si nécessaire et le signer. Inspection visuelle, tests de qualité.<br><br><strong>Outil utilisé:</strong> Bon de livraison, check-list de vérification ou de qualité"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-box"></i>
-                    Réception des biens
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus transport" data-actors="RLog, Gestionnaire de stock, RP"
-                    data-popup-content="<strong>Objectifs:</strong> Gestion des biens non conformes ou non distribué sur le terrain, minimisation des pertes, respect des procédures.<br><br><strong>Moyen de contrôle:</strong> Réception des retours avec Bon de livraison fait par le RP, sinon le Gestionnaire de stock prépare un Bon de réception pour remettre les produits en stocks<br><br><strong>Outil utilisé:</strong> Bon de livraison, bon de réception"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-reply"></i>
-                    Gestion des retours
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus transport" data-actors="RLog, RDD Log, Rfin, RDD Finance"
-                    data-popup-content="<strong>Objectifs:</strong> Maîtrise des coûts, identification des opportunités d'économies ou d'investissements (p.ex : achat de camions)<br><br><strong>Moyen de contrôle:</strong> Obtenir des devis, étude de marché, suivi du budget utilisé pour le transpot (BFU, Plan fi, Polaris)<br><br><strong>Outil utilisé:</strong>"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-coins"></i>
-                    Gestion des coûts de transport
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus transport" data-actors="RLog, responsable sécurité, Admin"
-                    data-popup-content="<strong>Objectifs:</strong> Minimisation des risques, protection des biens et des personnes.<br><br><strong>Moyen de contrôle:</strong> L'assurance est seulement obligatoire pour le transport international chez ACF.<br><br><strong>Outil utilisé:</strong>"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-shield-alt"></i>
-                    Gestion des risques
-                    <div class="fleche"></div>
-                </div>
-            </div>
-        <div class="category-image" style="display:none;">
-            <img src="Logo_transport.png" alt="Image gestion achats" />
-        </div>
-    </div>
- </div>
-
-    <!-- Section LOGISTIQUE - Equipements -->
-    <div class="section-container" data-category="equipements">
-        <h2 style="text-align:center;">Equipements</h2>
-        <div class="frise-container">
-            <div class="frise">
-                <div class="processus equipements" data-actors="RLog, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Intégration dans la stratégie logistique du bureau pays ou le plan de financement.<br><br><strong>Moyen de contrôle:</strong> Concrétisation dans les plannings d'approvisionnement par projets ou au budget de la structure et plan d'approvisionnement . Évaluation des besoins (achat de nouvel équipement, renouvellement, coût de fonctionnement).<br><br><strong>Outil utilisé:</strong> MM_stratégie log de la mission_02 Annexes_aaaa-aaaa_V3_2.xls , Plan de flotte de la mission (pour les véhicules)"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-clipboard-list"></i>
-                    Planification des équipements
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus equipements" data-actors="RDD Log, Siège"
-                    data-popup-content="<strong>Objectifs:</strong> Rationaliser les achats et faciliter la gestion du parc d'équipements en définissant des modèles standards.<br><br><strong>Moyen de contrôle:</strong> Définition d'une liste d'équipements standards pour les achats locaux.<br><br><strong>Outil utilisé:</strong>"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-tools"></i>
-                    Définition des équipements standards
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus equipements" data-actors="RLog, Rfin, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Acquérir les équipements nécessaires dans le respect des procédures d'achat.<br><br><strong>Moyen de contrôle:</strong> Préparation et validation de DA. Facture pour l'enregistrement de l'équipement.<br><br><strong>Outil utilisé:</strong> Procédures d'achat standard d'ACF. DA. Dossier d'achat. Facture"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-shopping-cart"></i>
-                    Processus d'achat
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus equipements" data-actors="RLog, Rfin"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer un suivi précis de chaque équipement, de son acquisition à sa mise hors service.<br><br><strong>Moyen de contrôle:</strong> Enregistrement dans ATOM et date d'inventaire mis à jour. Renseigner les informations de l'équipement dans ATOM.<br><br><strong>Outil utilisé:</strong> Liste d'équipement (Excel) ou ATOM. Fichier de suivi de DEN ou LINK."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-clipboard-check"></i>
-                    Enregistrement des équipements
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus equipements" data-actors="RLog, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Gérer l'utilisation des équipements et suivre leurs mouvements.<br><br><strong>Moyen de contrôle:</strong> Affectation à une base, un département, une pièce ou une personne dans ATOM. Utilisation d'un formulaire pour l'affectation à un utilisateur qui sera signé et uploader dans ATOM.<br><br><strong>Outil utilisé:</strong> ATOM et le suivi de l'historique opour voir les changement d'affectation. Les formulaire d'attribution issu d'ATOM et signés. Bon de livraison."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-exchange-alt"></i>
-                    Affectation et transfert des équipements
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus equipements" data-actors="RLog, Rfin"
-                    data-popup-content="<strong>Objectifs:</strong> Vérifier périodiquement l'existence et l'état des équipements.<br><br><strong>Moyen de contrôle:</strong> Réalisation d'un inventaire physique trimestriel (dans tous les bureaux) et annuel (avec l'inclusion de l'équipe financière).<br><br><strong>Outil utilisé:</strong> Liste d'inventaire issue d'ATOM"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-list-alt"></i>
-                    Inventaire des équipements
-                    <div class="fleche"></div>
-                </div>
-
-                <div class="processus equipements" data-actors="RDD Log, RFin"
-                    data-popup-content="<strong>Objectifs:</strong> Fournir une vue d'ensemble du parc d'équipements et de son utilisation.<br><br><strong>Moyen de contrôle:</strong> Rapport des équipement possible via extraction dans ATOM. Identification des nouveaux équipements grâce à la colonne date d'achat.<br><br><strong>Outil utilisé:</strong> Liste d'équipement extraite d'ATOM. Extractions de SAGA"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-chart-bar"></i>
-                    Rapport d'équipement
-                    <div class="fleche"></div>
-                </div>
-
-                <div class="processus equipements" data-actors="Rfin, Siège"
-                    data-popup-content="<strong>Objectifs:</strong> Comptabiliser la perte de valeur des équipements au fil du temps.<br><br><strong>Moyen de contrôle:</strong> Préparation d'une carte de dépréciation et calcul de la dépréciation mensuelle. Adaptation mensuelle de la carte de dépréciation selon les plans de financement<br><br><strong>Outil utilisé:</strong> Fiches de dépréciation. Plan de financement des équipements."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-calculator"></i>
-                    Dépréciation des équipements
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus equipements" data-actors="RDD Log, RLR"
-                    data-popup-content="<strong>Objectifs:</strong> Mettre hors service et disposer des équipements de manière responsable.<br><br><strong>Moyen de contrôle:</strong> Suivi des règles des bailleurs pour la destination définitive des équipements (transfert au bailleur, à une autre organisation, vente, etc.).<br><br><strong>Outil utilisé:</strong> Certificat de destruction."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-recycle"></i>
-                    Gestion des équipements en fin de vie
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus equipements" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Conserver une trace documentaire de la gestion des équipements.<br><br><strong>Moyen de contrôle:</strong> Centralisation des originaux des dossiers d'équipement à la capitale (ou dans une base principale). Conservation d'un dossier simplifié sur la base.<br><br><strong>Outil utilisé:</strong> Dossiers d'équipement (physiques et/ou numériques)."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-archive"></i>
-                    Archivage des documents
-                    <div class="fleche"></div>
-                </div>
-                <div class="category-image" style="display:none;">
-                    <img src="Logo_equipement.png" alt="Image gestion equipement" />
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Section LOGISTIQUE - Energie -->
-    <div class="section-container" data-category="energie">
-        <h2 style="text-align:center;">Energie</h2>
-        <div class="frise-container">
-            <div class="frise">
-                <div class="processus energie" data-actors="RLog, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Comprendre les besoins énergétiques, dimensionner correctement les sources d'alimentation, identifier les opportunités d'économies.<br><br><strong>Moyen de contrôle:</strong> Réalisation d'un diagnostic énergétique (obligatoire avant tout nouvel investissement dans l'alimentation électrique et en cas d'évolutions significatives de la consommation).<br><br><strong>Outil utilisé:</strong> Fichier Excel ""Diagnostic énergie""."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-search"></i>
-                    Diagnostic énergétique
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus energie" data-actors="RLog, RDD Log, Siège"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer la disponibilité de l'électricité 24h/24, 7j/7, assurer une qualité correcte, minimiser les coûts, limiter les nuisances et l'impact environnemental.<br><br><strong>Moyen de contrôle:</strong> Prise en compte des coûts initiaux et des coûts de fonctionnement. Application d'un arbre de décision pour guider le choix.<br><br><strong>Outil utilisé:</strong> Arbre de décision (dans le guide)."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-lightbulb"></i>
-                    Choix des sources d'alimentation
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus energie" data-actors="Utilisateurs, RLog, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Éviter les consommations inutiles, réduire les consommations inévitables sans dégrader la qualité du service.<br><br><strong>Moyen de contrôle:</strong> Sensibilisation des utilisateurs aux économies d'énergie (affiches dans les bâtiments).<br><br><strong>Outil utilisé:</strong> Affiches de sensibilisation (exemple en annexe 2 du guide)."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-hand-holding-usd"></i>
-                    Gestion de la demande (Maîtrise de l'énergie)
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus energie" data-actors="RAppro, RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Choisir des équipements efficaces et bien dimensionnés.<br><br><strong>Moyen de contrôle:</strong> Mention des labels énergétiques (étiquette énergie européenne). Utilisation des outils ACV ACF<br><br><strong>Outil utilisé:</strong>"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-shopping-cart"></i>
-                    Achats d'équipements économes
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus energie" data-actors="RLog, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Identifier les gaspillages, optimiser l'utilisation des ressources.<br><br><strong>Moyen de contrôle:</strong> Suivie des consommations en carburant dans le fleet follow up.<br><br><strong>Outil utilisé:</strong> Fuel Follow up dans the Fleet Follow up"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-chart-line"></i>
-                    Suivi des consommations
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus energie" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer le bon fonctionnement des équipements, prolonger leur durée de vie, éviter les pannes.<br><br><strong>Moyen de contrôle:</strong> Entretien recommandé des climatiseurs (nettoyage, vérification, etc.), des panneau solaire, plan de de maintenance des générateurs.<br><br><strong>Outil utilisé:</strong> Manuels d'utilisation des équipements, recommandation générale d'entretien. Plan de maintenance des générateurs en fonction des generateurs log book ou fiche de suivie des heures des générateurs."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-wrench"></i>
-                    Maintenance des équipements
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus energie" data-actors="RLog, RDD Log, Siège"
-                    data-popup-content="<strong>Objectifs:</strong> Promouvoir une culture de l'efficacité énergétique, encourager l'adoption de comportements responsables.<br><br><strong>Moyen de contrôle:</strong> Affiches de sensibilisation (obligatoire).<br><br><strong>Outil utilisé:</strong> Affiches de sensibilisation (exemple en annexe 2 du guide)."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-bullhorn"></i>
-                    Sensibilisation et formation du personnel
-                    <div class="fleche"></div>
-                </div>
-            </div>
- <div class="category-image" style="display:none;">
-            <img src="Logo_energie.png" alt="Image gestion achats" />
-        </div>
-        </div>
-    </div>
-
-    <!-- Section LOGISTIQUE - Gestion des Dons en Nature (DEN) -->
-    <div class="section-container" data-category="dons">
-        <h2 style="text-align:center;">Gestion des Dons en Nature (DEN)</h2>
-        <div class="frise-container">
-            <div class="frise">
-                <div class="processus dons"
-                    data-actors="Directeur Pays, RP, RDD Technique, RDD Log, RDD Fin, Salarié"
-                    data-popup-content="<strong>Objectifs:</strong> Anticiper la réception du don, préparer la logistique et les ressources nécessaires.<br><br><strong>Moyen de contrôle:</strong> Information au RDD Log et RDD Fin. Enregistrement du contrat dans SAGA (si applicable).<br><br><strong>Outil utilisé:</strong> Courriel, SAGA"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-bell"></i>
-                    Prévision du don en nature
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus dons" data-actors="RLog, Gestionnaire de stock"
-                    data-popup-content="<strong>Objectifs:</strong> S'assurer de la conformité du don aux informations prévues, détecter les anomalies.<br><br><strong>Moyen de contrôle:</strong> Vérification de la quantité et de la qualité (en référence aux procédures de gestion de stocks et de contrôle qualité). Complétion d'un bon de livraison ou de réception.<br><br><strong>Outil utilisé:</strong> Bon de livraison, Certificat de don, fichier de suivi des dons en nature (ou LINK)"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-box"></i>
-                    Réception du don en nature
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus dons" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Obtenir un justificatif de la valeur du don pour l'enregistrement en comptabilité.<br><br><strong>Moyen de contrôle:</strong> Recherche de prix auprès du donateur (ou via le Certificat de don si valorisé) ou par ACF (brève étude de marché).<br><br><strong>Outil utilisé:</strong> Justificatif de prix (Certificat de donation valorisé ou devis récent). Fichier de suivi des dons en nature."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-money-bill-wave"></i>
-                    Valorisation du don
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus dons" data-actors="RLog, Rfin"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer la traçabilité du don, permettre le suivi financier et logistique.<br><br><strong>Moyen de contrôle:</strong> Enregistrement de la réception des DEN dans Link. Imputation du don à un contrat bailleur ou au budget de la structure.<br><br><strong>Outil utilisé:</strong> Link, SAGA"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-link"></i>
-                    Enregistrement du don dans les outils ACF
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus dons" data-actors="RLog, RDD Log"
-                    data-popup-content="<strong>Objectifs:</strong> Conserver les documents justificatifs pour les audits et les contrôles.<br><br><strong>Moyen de contrôle:</strong> Envoi mensuel des documents à la capitale pour archivage.<br><br><strong>Outil utilisé:</strong> Dossiers d'archives (physiques ou numériques)"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-archive"></i>
-                    Archivage des documents
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus dons" data-actors="RLog, RDD Log, RDD Fin"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer le suivi des dons, faciliter la consolidation des données.<br><br><strong>Moyen de contrôle:</strong> Si pas LINK, transmission du tableau récapitulatif des dons en nature au RDD Log (mensuellement) et au RDD Fin (semestriellement). Contrôle de la cohérence des données.<br><br><strong>Outil utilisé:</strong> LINK ou Tableau récapitulatif des dons en nature (IKD ST)"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-chart-pie"></i>
-                    Reporting
-                    <div class="fleche"></div>
-                </div>
-            </div>
-        </div>
-   <div class="category-image" style="display:none;">
-            <img src="Logo_Donation.png" alt="Image gestion achats" />
-</div>
-    </div>
-
-    <!-- Section LOGISTIQUE - Assurance qualité -->
-    <div class="section-container" data-category="assurance-qualite">
-        <h2 style="text-align:center;">Assurance qualité</h2>
-        <div class="frise-container">
-            <div class="frise">
-                <div class="processus assurance-qualite" data-actors=""
-                    data-popup-content="<strong>Objectifs:</strong> S'assurer que les produits et services répondent aux besoins du programme et aux exigences de qualité.<br><br><strong>Moyen de contrôle:</strong> Le demandeur est responsable d'établir des specs techniques claires. Mention des labels énergétiques par exemple, critères et tests qualités à réaliser.<br><br><strong>Outil utilisé:</strong> catalogue LINK (Health, Nutrition, Food Security), critères ESG et techniques"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-file-alt"></i>
-                    Définition des spécifications techniques
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus assurance-qualite" data-actors=""
-                    data-popup-content="<strong>Objectifs:</strong> <br><br><strong>Moyen de contrôle:</strong> Étude de marché, vérification des références, visite des fournisseurs et des installations, évaluation des performances passées, Questionnaire Fournisseur .<br><br><strong>Outil utilisé:</strong> BDD fournisseurs avec suivi des évaluation fournisseurs, Questionnaires, Catalogue Link"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-users"></i>
-                    Contrôle qualité : Evaluation Fournisseurs
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus assurance-qualite" data-actors=""
-                    data-popup-content="<strong>Objectifs:</strong> S'assurer de la conformité des produits avant de s'engager contractuellement.<br><br><strong>Moyen de contrôle:</strong> Demande d'analyse à un laboratoire.<br><br><strong>Outil utilisé:</strong> Résultats d'analyse."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-flask"></i>
-                    Inspection préliminaire : analyse en labo
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus assurance-qualite" data-actors=""
-                    data-popup-content="<strong>Objectifs:</strong> <br><br><strong>Moyen de contrôle:</strong> <br><br><strong>Outil utilisé:</strong> "
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-file-contract"></i>
-                    Définition des tests à inclure dans les contrats de livraison
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus assurance-qualite" data-actors="Gestionnaire de stock,Demandeur"
-                    data-popup-content="<strong>Objectifs:</strong> Détecter les non-conformités, garantir la qualité des produits reçus.<br><br><strong>Moyen de contrôle:</strong> Le Gestionnaire de stock est responsable de l'inspection de la livraison. Pour les gros contrats le Logisticien en charge des achats et demandeur doivent également être présent.<br><br><strong>Outil utilisé:</strong> Check list qualite Food & Nut, Test organoléptique, Test aflatoxine, réserves sur Bon de livraison"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-clipboard-check"></i>
-                    Contrôle qualité au moment de la livraison
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus assurance-qualite" data-actors="Siège,RP,RDD Technique"
-                    data-popup-content="<strong>Objectifs:</strong> Confirmer ou infirmer la suspicion, identifier la cause du problème.<br><br><strong>Moyen de contrôle:</strong> Envoi d'un échantillon au laboratoire.<br><br><strong>Outil utilisé:</strong> Résultats d'analyse."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-microscope"></i>
-                    Analyse en laboratoire lors de problèmes qualité des produits
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus assurance-qualite" data-actors="RDD Fin,RDD Log,RP,RDD Technique,."
-                    data-popup-content="<strong>Objectifs:</strong> Protéger les bénéficiaires, éviter l'utilisation de produits défectueux.<br><br><strong>Moyen de contrôle:</strong> Information du supérieur hiérarchique. Décision de suspendre l'utilisation.<br><br><strong>Outil utilisé:</strong> Procédures de gestion des alertes."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Systèmes d'alerte et retrait produits de la circulation
-                    <div class="fleche"></div>
-                </div>
-            </div>
-        </div>
-    <div class="category-image" style="display:none;">
-            <img src="QA.png" alt="Image gestion achats" />
-    </div>
-   </div>
-
-    <!-- Section LOGISTIQUE - Gestion de parc véhicules -->
-    <div class="section-container" data-category="gestion-parc-vehicules">
-        <h2 style="text-align:center;">Gestion de parc véhicules</h2>
-        <div class="frise-container">
-            <div class="frise">
-                <div class="processus gestion-parc-vehicules" data-actors="RLR,RDD Log,RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Définir le nombre et le type de véhicules nécessaires pour répondre aux besoins opérationnels, tout en optimisant les coûts et la disponibilité.<br><br><strong>Moyen de contrôle:</strong> Analyse des besoins par projet, historique d’utilisation, taux d’immobilisation, planification budgétaire, validation par le RDD Log et l’Admin.<br><br><strong>Outil utilisé:</strong> Planning de flotte (formulaire 9), TracPoint, rapport d’utilisation mensuelle, tableau de consommation carburant, plan d’approvisionnement, projection budgétaire."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-car"></i>
-                    Dimensionnement de la flotte de véhicule
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-parc-vehicules" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer une disponibilité optimale des véhicules en fonction des besoins opérationnels. Eviter les doublons ou conflits de planning.<br><br><strong>Moyen de contrôle:</strong> Consolidation hebdomadaire par la logistique, tableau de planification visible, validation des priorités par le Rlog et validation sécurité le cas échéant. Tableau des mouvements est contrôlé et à jour tout les vendredi pour la semaine d'après.<br><br><strong>Outil utilisé:</strong> Planning hebdomadaire (formulaire 11), tableau de bord, réunion logistique-programme (RP) ou fichier partagé."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-calendar-week"></i>
-                    Planification hebdomadaire des mouvements
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-parc-vehicules" data-actors="RLog,RP"
-                    data-popup-content="<strong>Objectifs:</strong> Recueillir les besoins de transport de manière structurée pour planifier efficacement.<br><br><strong>Moyen de contrôle:</strong> Formulaire de demande (ou fichier partagé) ou point en réunion hebdomadaire.<br><br><strong>Outil utilisé:</strong> Formulaire 10 - Demande de transport, email, réunion hebdomadaire."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-file-alt"></i>
-                    Demande de transport
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-parc-vehicules" data-actors="RLog,Chauffeur"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer que chaque véhicule est conduit par un chauffeur qualifié et responsable et qu'il a été briefé sur son planning et les itinéraires à prendre.<br><br><strong>Moyen de contrôle:</strong> Suivi des affectations, validation par le logisticien.<br><br><strong>Outil utilisé:</strong> Planning hebdomadaire, logbook, fiche d'affectation."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-user-tie"></i>
-                    Affectation des chauffeurs et briefing
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-parc-vehicules" data-actors="RDD Log,RLog,Directeur Pays,CT,Rsécurité"
-                    data-popup-content="<strong>Objectifs:</strong> Garantir que les déplacements sont autorisés et sécurisés selon les règles ACF.<br><br><strong>Moyen de contrôle:</strong> Validation par le CT ou resp sécu de la base (ou le CDM si besoin), respect des horaires et zones autorisées (LSOP sécurité).<br><br><strong>Outil utilisé:</strong> Planning, consignes sécurité (LSOP sécurité), briefing aux chauffeurs"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-shield-alt"></i>
-                    Validation sécurité des mouvements
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-parc-vehicules" data-actors="RDD Log,RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Contrôler les consommations pour optimiser les coûts et détecter les anomalies.<br><br><strong>Moyen de contrôle:</strong> Fleet Follow Up, relevés de consommation via fuel log book, anaylyse et validation mensuelle.<br><br><strong>Outil utilisé:
-Fleet Follow Up, fiches de consommation, rapports mensuels."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-gas-pump"></i>
-                    Suivi des consommations carburant
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-parc-vehicules" data-actors="RDD Log,RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer le bon fonctionnement et prolonger la durée de vie des véhicules.<br><br><strong>Moyen de contrôle:</strong> Planning de maintenance, carnet d'entretien, suivi des réparations.<br><br><strong>Outil utilisé:</strong> Carnet d'entretien, fiches de maintenance, Fleet Follow up, planning des maintenances"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-tools"></i>
-                    Maintenance des véhicules
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus gestion-parc-vehicules" data-actors="RDD Log,RLog,Directeur Pays,CT,Rsécurité"
-                    data-popup-content="<strong>Objectifs:</strong> Documenter et analyser les incidents pour améliorer la sécurité et la prévention.<br><br><strong>Moyen de contrôle:</strong> Fiche d'incident, rapport d'accident, enquête interne.<br><br><strong>Outil utilisé:</strong> Fiche d'incident, rapport d'accident"
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Gestion des incidents et accidents
-                    <div class="fleche"></div>
-                </div>
-            </div>
- <div class="category-image" style="display:none;">
-            <img src="Logo_fleet.png" alt="Image gestion achats" />
-        </div>
-        </div>
-    </div>
-
-    <!-- Section LOGISTIQUE - Management de l’équipe logistique -->
-    <div class="section-container" data-category="management-equipe-logistique">
-        <h2 style="text-align:center;">Management de l’équipe logistique</h2>
-        <div class="frise-container">
-            <div class="frise">
-                <div class="processus management-equipe-logistique" data-actors="RDD Log,RLog,RRH"
-                    data-popup-content="<strong>Objectifs:</strong> Définir la taille, les rôles et l’organisation de l’équipe logistique en fonction des besoins opérationnels.<br><br><strong>Moyen de contrôle:</strong> Validation de l'organigramme par le RDD Log, suivi des recrutements avec RH.<br><br><strong>Outil utilisé:</strong> Organigramme, fiches de poste, plan de staffing, documents RH dans NHF."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-sitemap"></i>
-                    Dimensionnement et structuration de l’équipe logistique
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus management-equipe-logistique" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Assurer la coordination des activités logistiques via des réunions régulières et un plan d’action partagé.<br><br><strong>Moyen de contrôle:</strong> Suivi du plan d’action, compte-rendu de réunion, validation hebdomadaire par le responsable logistique.<br><br><strong>Outil utilisé:</strong> Planning hebdomadaire, tableau de suivi, compte-rendu de réunion."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-calendar-alt"></i>
-                    Planification et coordination hebdomadaire
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus management-equipe-logistique" data-actors="RLog,RRH"
-                    data-popup-content="<strong>Objectifs:</strong> Organiser les congés et garantir que chaque membre connaît ses priorités via un plan d’action formel.<br><br><strong>Moyen de contrôle:</strong> Validation du planning des congés, suivi des priorités via le plan d’action.<br><br><strong>Outil utilisé:</strong> Planning des congés, plan d’action logistique, outil RH."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-umbrella-beach"></i>
-                    Gestion des congés et suivi des priorités
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus management-equipe-logistique" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Identifier les besoins en formation, planifier et tracer les formations pour renforcer les compétences logistiques.<br><br><strong>Moyen de contrôle:</strong> Suivi du plan de formation (selon parcours de formation ACF 2025), validation des formations réalisées, archivage des historiques.<br><br><strong>Outil utilisé:</strong> Plan de formation, fiches de formation, registre des formations."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-graduation-cap"></i>
-                    Formation et développement des compétences
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus management-equipe-logistique" data-actors="RLog,RRH"
-                    data-popup-content="<strong>Objectifs:</strong> Mettre en œuvre les évaluations RH, fixer des objectifs individuels et suivre les plans d’action personnalisés.<br><br><strong>Moyen de contrôle:</strong> Suivi des EAA, validation des objectifs SMART, revue périodique RH.<br><br><strong>Outil utilisé:</strong> Formulaires EAA, fiches d’objectifs, plan d’action individuel."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-tasks"></i>
-                    Évaluation et suivi individuel
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus management-equipe-logistique" data-actors="RLog"
-                    data-popup-content="<strong>Objectifs:</strong> Favoriser un environnement inclusif où chacun peut s’exprimer librement, quel que soit son poste.<br><br><strong>Moyen de contrôle:</strong> Feedback régulier, réunions d’équipe ouvertes, boîte à idées.<br><br><strong>Outil utilisé:</strong> Réunions d’équipe, outils de feedback, boîte à suggestions."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-comments"></i>
-                    Climat d’équipe et expression libre
-                    <div class="fleche"></div>
-                </div>
-                <div class="processus management-equipe-logistique" data-actors="RLog,RRH"
-                    data-popup-content="<strong>Objectifs:</strong> Appliquer les procédures RH en cas de manquement, en lien avec le département RH.<br><br><strong>Moyen de contrôle:</strong> Procédure RH, validation par RH et hiérarchie, traçabilité des mesures.<br><br><strong>Outil utilisé:</strong> Procédure disciplinaire RH, fiches d’incident, dossier RH."
-                    data-image-url="Procedure.png">
-                    <div class="actor-rectangle"></div>
-                    <i class="fas fa-exclamation-circle"></i>
-                    Gestion disciplinaire
-                    <div class="fleche"></div>
-                </div>
-            </div>
-        </div>
- <div class="category-image" style="display:none;">
-            <img src="Logo_Team.png" alt="Image gestion achats" />
-    </div>
-</div>
-
-     <!-- Section LOGISTIQUE - Gestion des bâtiments -->
-     <div class="section-container" data-category="gestion-batiments">
-        <h2 style="text-align:center;">Gestion des bâtiments</h2>
-        <div class="frise-container">
-            <div class="frise">
-                    <p>Aucune donnée disponible pour le moment</p>
-            </div>
-        </div>
-    </div>
-
 
     <button id="toggleDarkMode">Mode Sombre</button>
+
     <!-- Overlay pour afficher l'image en grand -->
     <div id="overlay" onclick="masquerImageEnGrand()">
         <img id="imageEnGrand" src="" alt="Image en grand">
     </div>
-
-
-
-
-
-
-
-
-
+    <div id="pdfOverlay" onclick="masquerPdf()"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 10000;">
+        <iframe id="pdfFrame" src="" style="width:80%; height:80%; border:none; background:white;"></iframe>
+        <button style="position:absolute; top:10px; right:10px; z-index: 10001; padding:10px; font-size:1em;"
+            onclick="masquerPdf()">Fermer</button>
+    </div>
 
     <script>
-    const toggleDarkMode = document.getElementById('toggleDarkMode');
+        const toggleDarkMode = document.getElementById('toggleDarkMode');
 
-    toggleDarkMode.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        toggleDarkMode.textContent = document.body.classList.contains('dark-mode') ? 'Mode Clair' : 'Mode Sombre';
-    });
+        toggleDarkMode.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            toggleDarkMode.textContent = document.body.classList.contains('dark-mode') ? 'Mode Clair' : 'Mode Sombre';
+        });
 
-    function toggleProcess(event) {
-        const processus = event.currentTarget;
-        const actorRectangle = processus.querySelector('.actor-rectangle');
-        const actors = processus.dataset.actors ? processus.dataset.actors.split(',').map(s => s.trim()).join(', ') : '';
-        const popupContent = processus.dataset.popupContent || '';
-        const imageUrl = processus.dataset.imageUrl;  // Récupère l'URL de l'image depuis l'attribut data-image-url
-
-        // --- Popup Logic ---
-        const existingPopup = processus.querySelector('.popup');
-        if (existingPopup) {
-            existingPopup.remove(); // Remove existing popup
-        } else {
-            // Create and show the popup
-            const popupDiv = document.createElement('div');
-            popupDiv.classList.add('popup');
-            popupDiv.innerHTML = popupContent;
-
-            // Ajoute l'icône Font Awesome pour agrandir l'image
-            if (imageUrl) {
-                popupDiv.innerHTML += `<i class="fas fa-search-plus agrandir-image" onclick="afficherImageEnGrand('${imageUrl}', event)"></i>`;
-            }
-
-            popupDiv.innerHTML += `<div style="margin-top: 10px;"><a href="https://nohungerforum.sharepoint.com/sites/KitLog/SitePages/fr/Home.aspx" target="_blank" class="popup-button">Accéder à l'outil</a></div>`;
-
-            processus.appendChild(popupDiv);
-            popupDiv.style.display = 'block';
+        function afficherImageEnGrand(imageUrl, event) {
+            event.stopPropagation();
+            const overlay = document.getElementById('overlay');
+            const imageEnGrand = document.getElementById('imageEnGrand');
+            imageEnGrand.src = imageUrl;
+            overlay.style.display = 'flex';
         }
 
-        // --- Actor Rectangle Logic ---
-        actorRectangle.textContent = actors;
-
-        if (actorRectangle.style.display === 'block') {
-            actorRectangle.style.display = 'none';
-        } else {
-            actorRectangle.style.display = 'block';
+        function masquerImageEnGrand() {
+            document.getElementById('overlay').style.display = 'none';
         }
-    }
 
-    function afficherImageEnGrand(imageUrl, event) {
-        event.stopPropagation(); // Empêche la propagation du clic au processus
-        const overlay = document.getElementById('overlay');
-        const imageEnGrand = document.getElementById('imageEnGrand');
-        imageEnGrand.src = imageUrl;
-        overlay.style.display = 'flex';
-    }
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.processus')) {
+                const popups = document.querySelectorAll('.popup');
+                popups.forEach(popup => popup.remove());
 
-    function masquerImageEnGrand() {
-        document.getElementById('overlay').style.display = 'none';
-    }
-
-    // Add event listeners to all .processus elements
-    document.querySelectorAll('.processus').forEach(p => {
-        p.addEventListener('click', toggleProcess);
-    });
-
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.processus')) {
-            const popups = document.querySelectorAll('.popup');
-            popups.forEach(popup => popup.remove()); // Remove popups
-
-            const actorRectangles = document.querySelectorAll('.actor-rectangle');
-            actorRectangles.forEach(rect => rect.style.display = 'none'); // Hide actor rectangles
-        }
-    });
-
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        const processusList = document.querySelectorAll('.processus');
-
-        processusList.forEach(processus => {
-            const text = processus.textContent.toLowerCase();
-            const actors = processus.dataset.actors ? processus.dataset.actors.toLowerCase() : '';
-            const actorRectangle = processus.querySelector('.actor-rectangle'); // Get the rectangle
-
-            // Check if the search term is in the process text OR in the actors
-            const matchesSearch = text.includes(searchTerm) || actors.includes(searchTerm);
-
-            if (matchesSearch) {
-                processus.style.display = 'block';
-
-                // Show the actor rectangle if there's a search term (actor filtering)
-                if (searchTerm) {
-                    actorRectangle.textContent = processus.dataset.actors; // Set the actor text
-                    actorRectangle.style.display = 'block'; // Show it
-                } else {
-                    actorRectangle.style.display = 'none'; // Hide it if no search term
-                }
-
-            } else {
-                processus.style.display = 'none';
-                actorRectangle.style.display = 'none'; // Always hide if the process doesn't match
+                const actorRectangles = document.querySelectorAll('.actor-rectangle');
+                actorRectangles.forEach(rect => rect.style.display = 'none');
             }
         });
-    });
 
-            // gestion bouton filtre
-    const btns = document.querySelectorAll('.filters button');
 
-    btns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // gestion actif
-            btns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
 
-            const filter = btn.getAttribute('data-filter'); // valeur du filtre
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const processusList = document.querySelectorAll('.processus');
 
-            // Masquer l'image par défaut
-            document.querySelector('.default-image').style.display = 'none';
+            processusList.forEach(processus => {
+                const text = processus.textContent.toLowerCase();
+                const actors = processus.dataset.actors ? processus.dataset.actors.toLowerCase() : '';
+                const typeControle = processus.dataset.typeControle ? processus.dataset.typeControle.toLowerCase() : '';
+                const actorRectangle = processus.querySelector('.actor-rectangle');
+                const localisationElement = processus.querySelector('.localisation');
 
-            document.querySelectorAll('.section-container').forEach(c => {
-                const category = c.getAttribute('data-category');
-                const imgDiv = c.querySelector('.category-image');
+                // Récupérer les localisations
+                const isHQ = processus.dataset.hq === 'true';
+                const isCoordination = processus.dataset.coordination === 'true';
+                const isBase = processus.dataset.base === 'true';
 
-                if (filter === 'all') {
-                    // afficher tout
-                    c.style.display = 'block';
-                    if (imgDiv) imgDiv.style.display = 'none'; // cache toutes les images si "tous"
-                } else  if (filter === 'clear') {
-                   // Effacer les filtres
-                document.querySelectorAll('.section-container').forEach(section => {
-                    section.style.display = 'none'; // Masquer toutes les sections
-                });
-                document.querySelector('.default-image').style.display = 'block'; // Afficher l'image par défaut
-                } else {
-                    if (category === filter) {
-                        c.style.display = 'block'; // montre la section
-                        if (imgDiv) imgDiv.style.display = 'block'; // montre son image
+                // Vérifier si le terme de recherche est dans les localisations
+                const matchesHQ = isHQ && 'hq'.includes(searchTerm);
+                const matchesCoordination = isCoordination && 'coordination'.includes(searchTerm);
+                const matchesBase = isBase && 'base'.includes(searchTerm);
+
+                // Vérifier si le terme de recherche est dans le texte, les acteurs, le type de contrôle ou les localisations
+                const matchesSearch = text.includes(searchTerm) || actors.includes(searchTerm) || typeControle.includes(searchTerm) || matchesHQ || matchesCoordination || matchesBase;
+
+                if (matchesSearch) {
+                    processus.style.display = 'block';
+
+                    // Afficher les rectangles (acteur et localisation) si un terme de recherche est présent
+                    if (searchTerm) {
+                        actorRectangle.textContent = processus.dataset.actors;
+                        actorRectangle.style.display = 'block';
+                        localisationElement.style.display = 'block';
                     } else {
-                        c.style.display = 'none'; // cache autres sections
-                        if (imgDiv) imgDiv.style.display = 'none';
+                        actorRectangle.style.display = 'none';
+                        localisationElement.style.display = 'none';
                     }
+
+                } else {
+                    processus.style.display = 'none';
+                    actorRectangle.style.display = 'none';
+                    localisationElement.style.display = 'none';
                 }
             });
         });
-    });
 
-     </script>
 
-     <script>
-   document.addEventListener("DOMContentLoaded", function () {
-    fetch('processus_logistiques.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById("frise-gestion-stocks");
-            const gestionStocksData = data.filter(item => item.Processus === "Gestion de stocks");
+
+        const btns = document.querySelectorAll('.filters button');
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                document.querySelector('.default-image').style.display = 'none';
+
+                document.querySelectorAll('.section-container').forEach(c => {
+                    const category = c.dataset.category;
+
+                    if (filter === 'all') {
+                        c.style.display = 'block';
+                    } else if (filter === 'clear') {
+                        document.querySelectorAll('.section-container').forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        document.querySelector('.default-image').style.display = 'block';
+                    } else {
+                        // Vérifiez si le nom de la section correspond au filtre (insensible à la casse)
+                        if (category.toLowerCase() === filter.toLowerCase()) {
+                            c.style.display = 'block';
+                        } else {
+                            c.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Fonction pour attacher les événements et afficher les données
+        function attachSectionEvents(containerId, dataFilter) {
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`Container with id "${containerId}" not found.`);
+                return;
+            }
+
+            // Gestion des popups
+            container.querySelectorAll('.processus').forEach(processus => {
+                processus.addEventListener('click', function (event) {
+                    event.stopPropagation(); // Empêche la propagation du clic au document
+
+                    const actorRectangle = processus.querySelector('.actor-rectangle');
+                    const popupContent = this.dataset.popupContent;
+                    const existingPopup = processus.querySelector('.popup');
+
+                    if (existingPopup) {
+                        existingPopup.remove();
+                    } else {
+                        const popupDiv = document.createElement('div');
+                        popupDiv.classList.add('popup');
+                        popupDiv.innerHTML = popupContent;
+                        popupDiv.innerHTML +=
+                            `<div style="margin-top: 10px;"><a href="https://nohungerforum.sharepoint.com/sites/KitLog/SitePages/fr/Home.aspx" target="_blank" class="popup-button">Accéder à l'outil</a></div>`;
+                        processus.appendChild(popupDiv);
+                        popupDiv.style.display = 'block';
+                    }
+
+                    actorRectangle.textContent = this.dataset.actors;
+                    actorRectangle.style.display = actorRectangle.style.display === 'block' ? 'none' : 'block';
+                });
+            });
+        }
+
+
+
+        let showSubProcessus = true; // Par défaut, on affiche les sous-processus
+
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("DOM est complètement chargé");
+            fetch('processus_logistiques.json')
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Contenu du fichier JSON :", data);
+
+                    const sectionsContainer = document.getElementById("logistics-sections-container");
+                    const groupedData = groupDataByProcessus(data);
+
+                    for (const processus in groupedData) {
+                        const processusData = groupedData[processus];
+                        createSection(sectionsContainer, processusData, processus);
+                    }
+
+                })
+                .catch(error => console.error("Erreur:", error));
+
+            // Gestion du clic sur le bouton "Afficher toutes les activités"
+            const toggleViewButton = document.getElementById("toggleView");
+            toggleViewButton.addEventListener("click", function () {
+                showSubProcessus = !showSubProcessus; // Inverser la valeur de showSubProcessus
+                toggleViewButton.textContent = showSubProcessus ? "Afficher toutes les activités" :
+                    "Afficher par sous-processus"; // Modifier le texte du bouton
+
+                // Supprimer toutes les sections existantes
+                const sectionsContainer = document.getElementById("logistics-sections-container");
+                sectionsContainer.innerHTML = "";
+
+                // Recréer les sections en fonction de la nouvelle vue
+                fetch('processus_logistiques.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const groupedData = groupDataByProcessus(data);
+                        for (const processus in groupedData) {
+                            const processusData = groupedData[processus];
+                            createSection(sectionsContainer, processusData, processus);
+                        }
+
+                    })
+                    .catch(error => console.error("Erreur:", error));
+            });
+        });
+
+        function groupDataByProcessus(data) {
+            console.log("Fonction groupDataByProcessus appelée");
+            return data.reduce((acc, item) => {
+                const processus = item.Processus;
+                if (!acc[processus]) {
+                    acc[processus] = [];
+                }
+                acc[processus].push(item);
+                return acc;
+            }, {});
+        }
+
+        function createSection(container, sectionData, sectionTitle) {
+            console.log("Fonction createSection appelée pour :", sectionTitle);
+            console.log("sectionData :", sectionData);
+            console.log("sectionTitle :", sectionTitle);
 
             const sectionContainer = document.createElement("div");
             sectionContainer.className = "section-container";
-            sectionContainer.dataset.category = "gestion-stocks";
+            sectionContainer.dataset.category = sectionTitle;
 
             const h2 = document.createElement("h2");
             h2.style.textAlign = "center";
-            h2.textContent = "Gestion des Stocks";
+            h2.textContent = sectionTitle;
 
             const friseContainer = document.createElement("div");
             friseContainer.className = "frise-container";
 
             const frise = document.createElement("div");
             frise.className = "frise";
+            frise.id = `frise-${sectionTitle.toLowerCase().replace(/ /g, "-")}`;
+            frise.dataset.filter = sectionTitle;
 
-            gestionStocksData.forEach(item => {
-                const processus = document.createElement("div");
-                processus.className = "processus gestion-stocks";
+            if (showSubProcessus) {
+                // Afficher par sous-processus
+                const groupedBySousProcessus = groupBySousProcessus(sectionData);
 
-                // Build the actors string
-                let actors = [];
-                if (item.DRO) actors.push(`DRO (${item.DRO})`);
-                if (item.CFR) actors.push(`CFR (${item.CFR})`);
-                if (item.RLR) actors.push(`RLR (${item.RLR})`);
-                if (item["Référent Tech siège"]) actors.push(`Référent Tech siège (${item["Référent Tech siège"]})`);
-                if (item["Pharmacien siège"]) actors.push(`Pharmacien siège (${item["Pharmacien siège"]})`);
-                if (item["Directeur pays"]) actors.push(`Directeur pays (${item["Directeur pays"]})`);
-                if (item["RDD Log"]) actors.push(`RDD Log (${item["RDD Log"]})`);
-                if (item["RDD Technique"]) actors.push(`RDD Technique (${item["RDD Technique"]})`);
-                if (item["RDD Fin"]) actors.push(`RDD Fin (${item["RDD Fin"]})`);
-                if (item.CT) actors.push(`CT (${item.CT})`);
-                if (item.RP) actors.push(`RP (${item.RP})`);
-                if (item["Gestionnaire de stock"]) actors.push(`Gestionnaire de stock (${item["Gestionnaire de stock"]})`);
-                if (item["RLog/RAppo"]) actors.push(`RLog/RAppo (${item["RLog/RAppo"]})`);
-                if (item.RFin) actors.push(`RFin (${item.RFin})`);
-                if (item.RRH) actors.push(`RRH (${item.RRH})`);
+                for (const sousProcessus in groupedBySousProcessus) {
+                    const sousProcessusData = groupedBySousProcessus[sousProcessus];
 
-                processus.dataset.actors = actors.join(', ');
-                processus.dataset.popupContent = `<strong>Objectifs:</strong> ${item["Objectifs"] || ''}<br><br><strong>Moyen de contrôle :</strong> ${item["Moyens de contrôles utilisés"] || ''}<br><br><strong>Outil utilisé :</strong> ${item["Preuves/Outils utilisés"] || ''}`;
-                processus.dataset.imageUrl = item["Image URL"] || '';
+                    // Créer le conteneur du sous-processus
+                    const sousProcessusContainer = document.createElement("div");
+                    sousProcessusContainer.className = "sous-processus-container";
 
-                processus.innerHTML = `
-                    <div class="actor-rectangle">${processus.dataset.actors}</div>
-                    <i class="fas fa-clipboard-list"></i>
-                    ${item["Activité"] || ''}
-                    <div class="fleche"></div>
-                `;
+                    // Ajouter le titre du sous-processus
+                    const sousProcessusTitle = document.createElement("h3");
+                    sousProcessusTitle.textContent = sousProcessus;
+                    sousProcessusContainer.appendChild(sousProcessusTitle);
 
-                frise.appendChild(processus);
-            });
+                    sousProcessusData.forEach(item => {
+                        const processus = createProcessusElement(item, sectionTitle);
+                        sousProcessusContainer.appendChild(processus);
+                    });
+
+                    // Ajouter le conteneur du sous-processus à la frise
+                    frise.appendChild(sousProcessusContainer);
+                }
+            } else {
+                // Afficher toutes les activités au même niveau
+                sectionData.forEach(item => {
+                    const processus = createProcessusElement(item, sectionTitle);
+                    frise.appendChild(processus);
+                });
+            }
 
             friseContainer.appendChild(frise);
             sectionContainer.appendChild(h2);
             sectionContainer.appendChild(friseContainer);
+
+            // Append default content if no data is available
+            if (sectionData.length === 0) {
+                const noDataMessage = document.createElement('p');
+                noDataMessage.textContent = "Aucune donnée disponible pour le moment";
+                frise.appendChild(noDataMessage);
+            }
+
             container.appendChild(sectionContainer);
 
+            // Appelez `attachSectionEvents` après avoir ajouté le contenu au DOM
+            attachSectionEvents(frise.id, sectionContainer.dataset.category);
+        }
+
+        function ouvrirPdf(pdfUrl) {
+            const overlay = document.getElementById('pdfOverlay');
+            const iframe = document.getElementById('pdfFrame');
+            iframe.src = pdfUrl; // Charger le PDF
+            overlay.style.display = 'flex'; // Afficher la popup
+        }
+
+        function masquerPdf() {
+            const overlay = document.getElementById('pdfOverlay');
+            const iframe = document.getElementById('pdfFrame');
+            iframe.src = ''; // Nettoyer le contenu
+            overlay.style.display = 'none'; // Cacher la popup
+        }
+
+      function createProcessusElement(item, sectionTitle) {
+    const processus = document.createElement("div");
+    processus.className = `processus ${sectionTitle.toLowerCase().replace(/ /g, "-")}`;
+    processus.dataset.actors = getActorsString(item);
+    processus.dataset.typeControle = item["Type de contrôle"];
+    processus.dataset.popupContent = getPopupContent(item);
+    processus.dataset.imageUrl = item["Image URL"] || '';
+
+    // Fichier PDF et page
+    const pdfFile = item["pdfFile"] || "default.pdf";
+    const pdfPage = item["pdfPage"] || 1;
+
+    // Icône spécifique selon la propriété 'icon' du JSON
+    const iconClass = item["Icone"] || "fa-cogs"; // Utiliser "Icone" au lieu de "icon"
+    const iconHtml = `<i class="fas ${iconClass}"></i>`;
+
+    // Petite loupe pour visualiser le PDF
+    const iconLoupe =
+        `<button onclick="ouvrirPdf('${pdfFile}#page=${pdfPage}')" style="margin-left: 10px; background: none; border: none; cursor: pointer; color: rgb(0, 95, 182) !important;"><i class="fas fa-search blue-loupe"></i></button>`;
+
+    // Construire le contenu du processus
+    processus.innerHTML = `
+        <div class="actor-rectangle">${getActorsString(item)}</div>
+        ${iconHtml}
+        ${item["Activité"] || ''}
+        <div class="fleche"></div>
+        ${iconLoupe}
+    `;
+
+    return processus;
+}
+
+
+
+        // Fonction pour regrouper les données par sous-processus
+        function groupBySousProcessus(data) {
+            console.log("Fonction groupBySousProcessus appelée");
+            return data.reduce((acc, item) => {
+                const sousProcessus = item["Sous processus"] ||
+                    "Sans sous-processus"; // Gérer le cas où le sous-processus est null
+                if (!acc[sousProcessus]) {
+                    acc[sousProcessus] = [];
+                }
+                acc[sousProcessus].push(item);
+                return acc;
+            }, {});
+        }
+
+        function getControlTypesString(item) {
+            let types = [];
+            if (item["Documentés (formel)"]) types.push("Documentés");
+            if (item["Opérationnels (informel)"]) types.push("Opérationnels");
+            if (item["Physique"]) types.push("Physique");
+            if (item["Automatisés"]) types.push("Automatisés");
+
+            return types.join(', ');
+        }
+
+        // Fonction pour créer le contenu du popup
+       function getPopupContent(item) {
+    console.log("Fonction getPopupContent appelée");
+    let popupContent = `<strong>Macroprocessus:</strong> ${item["Macroprocessus"] || ''}<br><br>`;
+    popupContent += `<strong>Processus:</strong> ${item["Processus"] || ''}<br><br>`;
+    popupContent += `<strong>Sous Processus:</strong> ${item["Sous processus"] || ''}<br><br>`;
+    popupContent += `<strong>Activité:</strong> ${item["Activité"] || ''}<br><br>`;
+    popupContent += `<strong>Objectifs:</strong> ${item["Objectifs"] || ''}<br><br>`;
+    popupContent += `<strong>Moyen de contrôle :</strong> ${item["Moyens de contrôles utilisés"] || ''}<br><br>`;
+    popupContent += `<strong>Outil utilisé :</strong> ${item["Preuves/Outils utilisés"] || ''}<br><br>`;
+
+    // Récupérer les icônes de localisation
+    let localisationIcons = [];
+    if (item["HQ"]) localisationIcons.push('<i class="fas fa-building" title="HQ" style="color: black;"></i>');
+    if (item["Coordination"]) localisationIcons.push('<i class="fas fa-map-marker-alt" title="Coordination" style="color: black;"></i>');
+    if (item["Base"]) localisationIcons.push('<i class="fas fa-home" title="Base" style="color: black;"></i>');
+    const localisationHtml = localisationIcons.join(' ');
+
+    // Ajoutez la section des types de contrôle AVEC les icônes de localisation
+    popupContent += `<div class="controle-popup">
+                        <strong>Types de contrôle :</strong> ${getControlTypesString(item)} 
+                        ${localisationHtml ? '<br><br><strong>Localisation :</strong> ' + localisationHtml : ''}
+                      </div>`;
+
+    return popupContent;
+}
+
+   
+        // Fonction pour obtenir la liste des acteurs sous forme de chaîne de caractères
+        function getActorsString(item) {
+            console.log("Fonction getActorsString appelée");
+            let actors = [];
+            if (item.DRO) actors.push(`DRO (${item.DRO})`);
+            if (item.CFR) actors.push(`CFR (${item.CFR})`);
+            if (item.RLR) actors.push(`RLR (${item.RLR})`);
+            if (item["Référent Tech siège"]) actors.push(`Référent Tech siège (${item["Référent Tech siège"]})`);
+            if (item["Pharmacien siège"]) actors.push(`Pharmacien siège (${item["Pharmacien siège"]})`);
+            if (item["Directeur pays"]) actors.push(`Directeur pays (${item["Directeur pays"]})`);
+            if (item["RDD Log"]) actors.push(`RDD Log (${item["RDD Log"]})`);
+            if (item["RDD Technique"]) actors.push(`RDD Technique (${item["RDD Technique"]})`);
+            if (item["RDD Fin"]) actors.push(`RDD Fin (${item["RDD Fin"]})`);
+            if (item.CT) actors.push(`CT (${item.CT})`);
+            if (item.RP) actors.push(`RP (${item.RP})`);
+            if (item["Gestionnaire de stock"]) actors.push(`Gestionnaire de stock (${item["Gestionnaire de stock"]})`);
+            if (item["RLog/RAppo"]) actors.push(`RLog/RAppo (${item["RLog/RAppo"]})`);
+            if (item.RFin) actors.push(`RFin (${item.RFin})`);
+            if (item.RRH) actors.push(`RRH (${item.RRH})`);
+
+            return actors.join(', ');
+        }
+
+        function attachSectionEvents(containerId, dataFilter) {
+            console.log("Fonction attachSectionEvents appelée pour :", containerId, dataFilter);
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`Container with id "${containerId}" not found.`);
+                return;
+            }
+
             // Gestion des popups
-            frise.querySelectorAll('.processus').forEach(processus => {
-                processus.addEventListener('click', function() {
+            container.querySelectorAll('.processus').forEach(processus => {
+                processus.addEventListener('click', function (event) {
+                    event.stopPropagation(); // Empêche la propagation du clic au document
+
                     const actorRectangle = processus.querySelector('.actor-rectangle');
                     const popupContent = this.dataset.popupContent;
                     const existingPopup = processus.querySelector('.popup');
 
                     if (existingPopup) {
-                        existingPopup.remove(); // Remove existing popup
+                        existingPopup.remove();
                     } else {
-                        // Create and show the popup
                         const popupDiv = document.createElement('div');
                         popupDiv.classList.add('popup');
                         popupDiv.innerHTML = popupContent;
-                        popupDiv.innerHTML += `<div style="margin-top: 10px;"><a href="https://nohungerforum.sharepoint.com/sites/KitLog/SitePages/fr/Home.aspx" target="_blank" class="popup-button">Accéder à l'outil</a></div>`;
-
+                        popupDiv.innerHTML +=
+                            `<div style="margin-top: 10px;"><a href="https://nohungerforum.sharepoint.com/sites/KitLog/SitePages/fr/Home.aspx" target="_blank" class="popup-button">Accéder à l'outil</a></div>`;
                         processus.appendChild(popupDiv);
                         popupDiv.style.display = 'block';
                     }
-                        actorRectangle.textContent =  processus.dataset.actors;
 
-                        if (actorRectangle.style.display === 'block') {
-                            actorRectangle.style.display = 'none';
-                        } else {
-                            actorRectangle.style.display = 'block';
-                        }
+                    actorRectangle.textContent = this.dataset.actors;
+                    actorRectangle.style.display = actorRectangle.style.display === 'block' ? 'none' : 'block';
                 });
             });
-        })
-        .catch(error => console.error("Erreur:", error));
-});
-
-
+            // Masquer toutes les sections au chargement
+            document.querySelectorAll('.section-container').forEach(c => {
+                c.style.display = 'none';
+            });
+        }
     </script>
-
-
 
 </body>
 
