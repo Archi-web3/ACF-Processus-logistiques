@@ -403,15 +403,50 @@
 .localisation {
   display: none;
 }
+#background-filigram {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('Logo_Stock2.png'); /* teste une image fixe ici pour voir */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* ou cover selon le rendu voulu */
+  opacity: 0.1; /* très transparent */
+  z-index: -1; /* derrière tout */
+}
+.search-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 550px; /* espace entre image et la zone de recherche/aide */
+  margin: 20px 0;
+}
+.section-image {
+  flex: 0 0 150px; /* largeur fixe pour l’image, ajuste si besoin */
+}
     </style>
 </head>
 
 <body>
+ 
+    <!--  <div id="background-filigram"></div>-->
+
+   <!--  <div id="top-logo" style="text-align: center; margin: 20px 0;">-->
+    <!-- Le logo de la section s'affichera ici -->
+
+</div>
     <div class="header">
         <img src="Logo_acf.png" alt="Logo" class="logo">
         <h1>Processus Logistiques</h1>
     </div>
 
+<div class="search-header">
+  <div class="section-image" id="section-image">
+
+  
+    <!-- L’image de la section s’affichera ici -->
+  </div>
 
     <div class="search-bar-container">
         <div class="search-bar">
@@ -562,35 +597,64 @@
         const btns = document.querySelectorAll('.filters button');
 
         btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                btns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+    btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-                const filter = btn.getAttribute('data-filter');
+        const filter = btn.getAttribute('data-filter');
 
-                document.querySelector('.default-image').style.display = 'none';
+        document.querySelector('.default-image').style.display = 'none';
 
+        document.querySelectorAll('.section-container').forEach(c => {
+            const category = c.dataset.category;
+
+            if (filter === 'all') {
+                c.style.display = 'block';
+            } else if (filter === 'clear') {
+                document.querySelectorAll('.section-container').forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.querySelector('.default-image').style.display = 'block';
+            } else {
+                // Vérifiez si le nom de la section correspond au filtre (insensible à la casse)
+                if (category.toLowerCase() === filter.toLowerCase()) {
+                    c.style.display = 'block';
+                } else {
+                    c.style.display = 'none';
+                }
+            }
+        });
+        
+        // Met à jour l’image à chaque clic, selon le filtre
+        const sectionImageDiv = document.getElementById('section-image');
+        if (sectionImageDiv) {
+            // Si le filtre est 'all' ou 'clear', tu peux décider de mettre une image par défaut
+            // Sinon, tu peux tenter de prendre la première section visible
+            // Ici, je vais simplement utiliser la section correspondante si affichée
+            // si aucune section, tu peux mettre une image par défaut
+            let sectionToShow = null;
+            if (filter === 'all') {
+                // Si tout est affiché, optionnel : image par défaut ou la première section
+            } else if (filter !== 'clear') {
+                // Tenter de repérer la première section qui est visible et correspond à la filtre
                 document.querySelectorAll('.section-container').forEach(c => {
-                    const category = c.dataset.category;
-
-                    if (filter === 'all') {
-                        c.style.display = 'block';
-                    } else if (filter === 'clear') {
-                        document.querySelectorAll('.section-container').forEach(section => {
-                            section.style.display = 'none';
-                        });
-                        document.querySelector('.default-image').style.display = 'block';
-                    } else {
-                        // Vérifiez si le nom de la section correspond au filtre (insensible à la casse)
-                        if (category.toLowerCase() === filter.toLowerCase()) {
-                            c.style.display = 'block';
-                        } else {
-                            c.style.display = 'none';
-                        }
+                    if (c.style.display === 'block') {
+                        sectionToShow = c.dataset.category;
+                        return; // sort de la boucle
                     }
                 });
-            });
-        });
+            }
+
+            // Si une section est trouvée, on met son image
+            if (sectionToShow) {
+                sectionImageDiv.innerHTML = `<img src="${getLogoForSection(sectionToShow)}" style="max-width:100%;">`;
+            } else {
+                // Sinon, image par défaut
+                sectionImageDiv.innerHTML = `<img src="Logo_acf.png" style="max-width:100%;">`;
+            }
+        }
+    });
+});
 
         // Fonction pour attacher les événements et afficher les données
         function attachSectionEvents(containerId, dataFilter) {
@@ -632,11 +696,11 @@
         let showSubProcessus = true; // Par défaut, on affiche les sous-processus
 
         document.addEventListener("DOMContentLoaded", function () {
-            console.log("DOM est complètement chargé");
+   
             fetch('processus_logistiques.json')
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Contenu du fichier JSON :", data);
+                   
 
                     const sectionsContainer = document.getElementById("logistics-sections-container");
                     const groupedData = groupDataByProcessus(data);
@@ -676,7 +740,7 @@
         });
 
         function groupDataByProcessus(data) {
-            console.log("Fonction groupDataByProcessus appelée");
+       
             return data.reduce((acc, item) => {
                 const processus = item.Processus;
                 if (!acc[processus]) {
@@ -687,75 +751,122 @@
             }, {});
         }
 
-        function createSection(container, sectionData, sectionTitle) {
-            console.log("Fonction createSection appelée pour :", sectionTitle);
-            console.log("sectionData :", sectionData);
-            console.log("sectionTitle :", sectionTitle);
 
-            const sectionContainer = document.createElement("div");
-            sectionContainer.className = "section-container";
-            sectionContainer.dataset.category = sectionTitle;
+        // Fonction pour retourner le chemin de l'image selon la section
+function getLogoForSection(sectionTitle) {
+    const logos = {
+        "Gestion de stocks": "Logo_Stock2.png",
+        "Gestion de achats": "Logo_Procurement.png",
+        "Transport": "Logo_transport.png",
+        "Equipements": "Logo_equipement.png",
+        "Energie": "Logo_energie.png",
+        "Gestion des Dons en Nature (DEN) ": "Logo_Donation.png",
+        "Assurance qualité": "QA.png",
+        "Gestion de parc véhicules": "Logo_fleet.png",
+        "Management de l’équipe logistique": "Logo_Team.png",
+        "Gestion des bâtiments": "Logo_acf.png"
+        // Ajoutez ici toutes vos autres sections et leurs images
+    };
+    return logos[sectionTitle] || "Logo_acf.png"; // par défaut si pas de correspondance
+}
 
-            const h2 = document.createElement("h2");
-            h2.style.textAlign = "center";
-            h2.textContent = sectionTitle;
+//function setBackgroundFiligram(imageUrl) {
+  //const bgDiv = document.getElementById('background-filigram');
+  //if (bgDiv) {
+    //bgDiv.style.backgroundImage = `url('${imageUrl}')`;
+ // }
+//}
+function attachPdfButtons() {
+  document.querySelectorAll('.pdf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const url = btn.dataset.url;
+      ouvrirPdf(url);
+    });
+  });
+}
+function createSection(container, sectionData, sectionTitle) {
+    console.log("Création section :", sectionTitle);
+    
+    const sectionContainer = document.createElement("div");
+    sectionContainer.className = "section-container";
+    sectionContainer.dataset.category = sectionTitle;
+    
+   
+    // Créer le div pour le logo en haut (centré)
+   //const sectionLogoDiv = document.createElement('div');
+    //sectionLogoDiv.style.textAlign = 'left';
+   //sectionLogoDiv.style.marginBottom = '15px';
 
-            const friseContainer = document.createElement("div");
-            friseContainer.className = "frise-container";
+    // Mise à jour du logo spécifique à la section
+   // sectionLogoDiv.innerHTML = `<img src="${getLogoForSection(sectionTitle)}" alt="Logo ${sectionTitle}" style="max-width:100%; height:auto;">`;
+    
+    // Ajoute le logo en haut de la section
+  //  sectionContainer.appendChild(sectionLogoDiv);
 
-            const frise = document.createElement("div");
-            frise.className = "frise";
-            frise.id = `frise-${sectionTitle.toLowerCase().replace(/ /g, "-")}`;
-            frise.dataset.filter = sectionTitle;
+    // (Optionnel) création de l’en-tête avec un titre ou autre, si nécessaire
+    /*
+    const headerDiv = document.createElement('div');
+    headerDiv.style.display = 'flex';
+    headerDiv.style.alignItems = 'center';
+    headerDiv.style.padding = '10px 0';
+    // ... (si tu veux conserver cette partie)
+    // sectionContainer.appendChild(headerDiv);
+    */
 
-            if (showSubProcessus) {
-                // Afficher par sous-processus
-                const groupedBySousProcessus = groupBySousProcessus(sectionData);
+    // La frise avec ses processus
+    const friseContainer = document.createElement("div");
+    friseContainer.className = "frise-container";
 
-                for (const sousProcessus in groupedBySousProcessus) {
-                    const sousProcessusData = groupedBySousProcessus[sousProcessus];
+    const frise = document.createElement("div");
+    frise.className = "frise";
+    frise.id = `frise-${sectionTitle.toLowerCase().replace(/ /g, "-")}`;
+    frise.dataset.filter = sectionTitle;
 
-                    // Créer le conteneur du sous-processus
-                    const sousProcessusContainer = document.createElement("div");
-                    sousProcessusContainer.className = "sous-processus-container";
+    if (showSubProcessus) {
+        const groupedBySousProcessus = groupBySousProcessus(sectionData);
+        for (const sousProcessus in groupedBySousProcessus) {
+            const sousProcessusData = groupedBySousProcessus[sousProcessus];
 
-                    // Ajouter le titre du sous-processus
-                    const sousProcessusTitle = document.createElement("h3");
-                    sousProcessusTitle.textContent = sousProcessus;
-                    sousProcessusContainer.appendChild(sousProcessusTitle);
+            const sousProcessusContainer = document.createElement("div");
+            sousProcessusContainer.className = "sous-processus-container";
 
-                    sousProcessusData.forEach(item => {
-                        const processus = createProcessusElement(item, sectionTitle);
-                        sousProcessusContainer.appendChild(processus);
-                    });
+            const sousProcessusTitle = document.createElement("h3");
+            sousProcessusTitle.textContent = sousProcessus;
+            sousProcessusContainer.appendChild(sousProcessusTitle);
 
-                    // Ajouter le conteneur du sous-processus à la frise
-                    frise.appendChild(sousProcessusContainer);
-                }
-            } else {
-                // Afficher toutes les activités au même niveau
-                sectionData.forEach(item => {
-                    const processus = createProcessusElement(item, sectionTitle);
-                    frise.appendChild(processus);
-                });
-            }
+            sousProcessusData.forEach(item => {
+                const processus = createProcessusElement(item, sectionTitle);
+                sousProcessusContainer.appendChild(processus);
+            });
 
-            friseContainer.appendChild(frise);
-            sectionContainer.appendChild(h2);
-            sectionContainer.appendChild(friseContainer);
-
-            // Append default content if no data is available
-            if (sectionData.length === 0) {
-                const noDataMessage = document.createElement('p');
-                noDataMessage.textContent = "Aucune donnée disponible pour le moment";
-                frise.appendChild(noDataMessage);
-            }
-
-            container.appendChild(sectionContainer);
-
-            // Appelez `attachSectionEvents` après avoir ajouté le contenu au DOM
-            attachSectionEvents(frise.id, sectionContainer.dataset.category);
+            frise.appendChild(sousProcessusContainer);
         }
+    } else {
+        sectionData.forEach(item => {
+            const processus = createProcessusElement(item, sectionTitle);
+            frise.appendChild(processus);
+        });
+    }
+
+    friseContainer.appendChild(frise);
+    sectionContainer.appendChild(friseContainer);
+    container.appendChild(sectionContainer);
+  
+    // Attache les événements
+    attachSectionEvents(frise.id, sectionTitle);
+
+     //setBackgroundFiligram(getLogoForSection(sectionTitle));
+
+ const sectionImageDiv = document.getElementById('section-image');
+if (sectionImageDiv) {
+  sectionImageDiv.innerHTML = `<img src="${getLogoForSection(sectionTitle)}" alt="Image ${sectionTitle}" style="max-width: 100%; height: auto;">`;
+
+}
+attachPdfButtons();
+
+    }
+
+
 
         function ouvrirPdf(pdfUrl) {
             const overlay = document.getElementById('pdfOverlay');
@@ -785,7 +896,7 @@
         const iconClass = item["Icone"] || "fa-cogs";
         const iconHtml = `<i class="fas ${iconClass}"></i>`;
 
-        const iconLoupe = `<button onclick="ouvrirPdf('${pdfFile}#page=${pdfPage}')" style="margin-left: 10px; background: none; border: none; cursor: pointer; color: rgb(0, 95, 182) !important;"><i class="fas fa-search blue-loupe"></i></button>`;
+       const iconLoupe = `<button class="pdf-btn" data-url="${pdfFile}#page=${pdfPage}" style="margin-left: 10px; background: none; border: none; cursor: pointer; color: rgb(0, 95, 182);"><i class="fas fa-search blue-loupe"></i></button>`;
 
         // Localisations
         let localisationIcons = [];
@@ -816,7 +927,7 @@
 
         // Fonction pour regrouper les données par sous-processus
         function groupBySousProcessus(data) {
-            console.log("Fonction groupBySousProcessus appelée");
+    
             return data.reduce((acc, item) => {
                 const sousProcessus = item["Sous processus"] ||
                     "Sans sous-processus"; // Gérer le cas où le sous-processus est null
@@ -840,7 +951,7 @@
 
         // Fonction pour créer le contenu du popup
        function getPopupContent(item) {
-    console.log("Fonction getPopupContent appelée");
+ 
     let popupContent = `<strong>Macroprocessus:</strong> ${item["Macroprocessus"] || ''}<br><br>`;
     popupContent += `<strong>Processus:</strong> ${item["Processus"] || ''}<br><br>`;
     popupContent += `<strong>Sous Processus:</strong> ${item["Sous processus"] || ''}<br><br>`;
@@ -868,7 +979,7 @@
    
         // Fonction pour obtenir la liste des acteurs sous forme de chaîne de caractères
         function getActorsString(item) {
-            console.log("Fonction getActorsString appelée");
+          
             let actors = [];
             if (item.DRO) actors.push(`DRO (${item.DRO})`);
             if (item.CFR) actors.push(`CFR (${item.CFR})`);
@@ -890,7 +1001,7 @@
         }
 
         function attachSectionEvents(containerId, dataFilter) {
-            console.log("Fonction attachSectionEvents appelée pour :", containerId, dataFilter);
+      
             const container = document.getElementById(containerId);
             if (!container) {
                 console.error(`Container with id "${containerId}" not found.`);
