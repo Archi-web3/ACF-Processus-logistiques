@@ -507,6 +507,16 @@ h2::after {
     }
 }
 
+/* Failsafe to remove giant logo if cached */
+.default-image,
+img[src*="Processus.png"] {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
 #logistics-sections-container {
     width: 100%;
 }

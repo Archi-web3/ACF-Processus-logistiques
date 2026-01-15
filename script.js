@@ -100,7 +100,7 @@ btns.forEach(btn => {
 
         const filter = btn.getAttribute('data-filter');
 
-        document.querySelector('.default-image').style.display = 'none';
+        // document.querySelector('.default-image') styles removed
 
         document.querySelectorAll('.section-container').forEach(c => {
             const category = c.dataset.category;
@@ -111,7 +111,7 @@ btns.forEach(btn => {
                 document.querySelectorAll('.section-container').forEach(section => {
                     section.style.display = 'none';
                 });
-                document.querySelector('.default-image').style.display = 'block';
+                // No default image to show anymore
             } else {
                 // Vérifiez si le nom de la section correspond au filtre (insensible à la casse)
                 if (category.toLowerCase() === filter.toLowerCase()) {
