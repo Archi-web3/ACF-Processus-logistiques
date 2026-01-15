@@ -76,9 +76,14 @@ searchInput.addEventListener('input', function () {
             // Afficher les rectangles (acteur et localisation) si un terme de recherche est présent
             if (searchTerm) {
                 processus.classList.add('search-active');
+                if (actorRectangle) {
+                    actorRectangle.textContent = processus.dataset.actors;
+                    actorRectangle.style.display = 'block';
+                }
                 localisationElement.style.display = 'block';
             } else {
                 processus.classList.remove('search-active');
+                if (actorRectangle) actorRectangle.style.display = 'none';
                 localisationElement.style.display = 'none';
             }
 
@@ -403,8 +408,8 @@ function createCard(item) {
     let popupHTML = `<h3>${item.Activité}</h3>`;
     popupHTML += `<strong>Objectifs:</strong> ${item.Objectifs || 'N/A'}<br><br>`;
 
-    // Restore Actors - Restored as per user request
-    if (computedActors) popupHTML += `<strong>Acteurs:</strong> ${computedActors}<br>`;
+    // Actors removed from popup - they appear on card banner during search
+    // if (computedActors) popupHTML += `<strong>Acteurs:</strong> ${computedActors}<br>`;
 
     popupHTML += `<strong>Type de contrôle:</strong> ${item['Type de contrôle'] || 'N/A'}<br>`;
 
