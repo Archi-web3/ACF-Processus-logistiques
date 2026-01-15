@@ -17,7 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=13">
+    <link rel="stylesheet" href="style.css?v=14">
 </head>
 
 <body>
@@ -25,11 +25,28 @@
     <div class="header">
         <img src="Logo_acf.png" alt="Logo ACF" class="logo">
         <h1>Processus Logistiques</h1>
-        <span style="position: absolute; right: 20px; font-size: 0.6em; opacity: 0.7;">v13</span>
+        <span style="position: absolute; right: 20px; font-size: 0.6em; opacity: 0.7;">v14</span>
     </div>
 
-    <!-- Top Controls (Moved Up) -->
-    <div style="text-align: center; margin: 0 !important; padding-top: 2px; padding-bottom: 5px;">
+    <!-- Filter Buttons (Moved to Top) -->
+    <div class="filters">
+        <button data-filter="all" class="active">Tous</button>
+        <button data-filter="Chaîne d'appovisionnement">Chaîne d'approvisionnement</button>
+        <button data-filter="Gestion de stocks">Gestion des stocks</button>
+        <button data-filter="Gestion de achats">Gestion des achats</button>
+        <button data-filter="Transport">Transport</button>
+        <button data-filter="Equipements">Equipements</button>
+        <button data-filter="Energie">Energie</button>
+        <button data-filter="Gestion des Dons en Nature (DEN) ">Dons en Nature</button>
+        <button data-filter="Assurance qualité">Assurance Qualité</button>
+        <button data-filter="Gestion de parc véhicules">Gestion Parc Véhicules</button>
+        <button data-filter="Management de l'équipe logistique">Management Équipe Logistique</button>
+        <button data-filter="Gestion des bâtiments">Gestion des bâtiments</button>
+        <button data-filter="clear">Effacer les filtres</button>
+    </div>
+
+    <!-- Control Buttons -->
+    <div style="text-align: center; margin: 10px 0 5px 0;">
         <button id="toggleView" class="filters button"
             style="background-color: var(--acf-orange); color: white;">Afficher toutes les activités</button>
         <button id="toggleDarkMode" class="filters button" style="background-color: #333; color: white;">Mode
@@ -53,8 +70,8 @@
             Terrain (Optimisé)</span>
     </div>
 
-    <!-- Search Bar (Below Buttons) -->
-    <div class="search-header">
+    <!-- Search Bar -->
+    <div class="search-header" style="margin-top: 10px;">
         <div class="search-row">
             <!-- 1. Logo Section (Left) -->
             <div class="section-image-container" id="section-image">
@@ -84,22 +101,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="filters">
-        <button data-filter="all" class="active">Tous</button>
-        <button data-filter="Chaîne d'appovisionnement">Chaîne d'approvisionnement</button>
-        <button data-filter="Gestion de stocks">Gestion des stocks</button>
-        <button data-filter="Gestion de achats">Gestion des achats</button>
-        <button data-filter="Transport">Transport</button>
-        <button data-filter="Equipements">Equipements</button>
-        <button data-filter="Energie">Energie</button>
-        <button data-filter="Gestion des Dons en Nature (DEN) ">Dons en Nature</button>
-        <button data-filter="Assurance qualité">Assurance Qualité</button>
-        <button data-filter="Gestion de parc véhicules">Gestion Parc Véhicules</button>
-        <button data-filter="Management de l’équipe logistique">Management Équipe Logistique</button>
-        <button data-filter="Gestion des bâtiments">Gestion des bâtiments</button>
-        <button data-filter="clear">Effacer les filtres</button>
     </div>
 
     <div id="logistics-sections-container">
