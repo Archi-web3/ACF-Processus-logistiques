@@ -295,6 +295,22 @@ function createSection(container, sectionData, sectionTitle) {
     attachSectionEvents(sectionContainer);
 }
 
+function masquerPdf() {
+    const overlay = document.getElementById('pdfOverlay');
+    const frame = document.getElementById('pdfFrame');
+    overlay.style.display = 'none';
+    frame.src = ""; // Stop loading
+}
+
+function ouvrirPdf(pdfUrl, page) {
+    const overlay = document.getElementById('pdfOverlay');
+    const frame = document.getElementById('pdfFrame');
+    // Si page est définie, on l'ajoute à l'URL (format navigateur standard #page=X)
+    const finalUrl = page ? `${pdfUrl}#page=${page}` : pdfUrl;
+    frame.src = finalUrl;
+    overlay.style.display = 'flex';
+}
+
 function createCard(item) {
     const card = document.createElement('div');
     card.className = 'processus';
@@ -331,12 +347,24 @@ function createCard(item) {
     let iconClass = item.Icone || 'fa-cogs';
     if (iconClass.startsWith('fa-')) iconClass = `fas ${iconClass}`;
 
-    // Inner HTML Structure - Restoring Localisation and Details teaser
+    // PDF Loupe Handling
+    let pdfIconHtml = '';
+    // We check if pdfFile exists. Note: use single quotes inside onclick to avoid breaking HTML.
+    if (item.pdfFile) {
+        // Encode filenames to be safe
+        const safePdf = encodeURIComponent(item.pdfFile).replace(/'/g, "%27");
+        const page = item.pdfPage || 1;
+        // stopPropagation is crucial so it doesn't open the card popup
+        pdfIconHtml = `<i class="fas fa-search blue-loupe" title="Voir la procédure" onclick="event.stopPropagation(); ouvrirPdf('${safePdf}', ${page})"></i>`;
+    }
+
+    // Inner HTML Structure
     card.innerHTML = `
         <div class="actor-rectangle" style="display:none;"></div>
+        ${pdfIconHtml}
         <i class="${iconClass}"></i>
         <div class="card-title">${item.Activité}</div>
-        
+
         <div class="localisation">
             ${item.HQ ? '<i class="fas fa-building" title="Siège"></i> ' : ''}
             ${item.Coordination ? '<i class="fas fa-map-marker-alt" title="Coordination"></i> ' : ''}

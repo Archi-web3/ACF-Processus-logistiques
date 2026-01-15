@@ -306,6 +306,25 @@ h2::after {
     justify-content: center;
 }
 
+.blue-loupe {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--acf-blue);
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.blue-loupe:hover {
+    transform: scale(1.2);
+    color: var(--acf-orange);
+}
+
 /* Helpers */
 .frise {
     display: flex;
