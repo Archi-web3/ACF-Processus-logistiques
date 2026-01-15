@@ -109,8 +109,8 @@ h2::after {
 /* Search Header */
 /* Search Header */
 .search-header {
-    margin-bottom: 20px;
-    padding: 0 20px;
+    margin: 0;
+    padding: 0 10px;
 }
 
 .search-row {
