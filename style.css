@@ -258,8 +258,8 @@ h2::after {
 /* Filters */
 .filters {
     text-align: center;
-    margin: 2px 20px 5px 20px;
-    /* Minimal top margin, compact layout */
+    margin: 0 20px 5px 20px !important;
+    /* Force zero top margin */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
