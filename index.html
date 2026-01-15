@@ -17,7 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=9">
+    <link rel="stylesheet" href="style.css?v=10">
 </head>
 
 <body>
@@ -52,27 +52,11 @@
             Terrain (Optimisé)</span>
     </div>
 
-    <div class="filters">
-        <button data-filter="all" class="active">Tous</button>
-        <button data-filter="Chaîne d'appovisionnement">Chaîne d'approvisionnement</button>
-        <button data-filter="Gestion de stocks">Gestion des stocks</button>
-        <button data-filter="Gestion de achats">Gestion des achats</button>
-        <button data-filter="Transport">Transport</button>
-        <button data-filter="Equipements">Equipements</button>
-        <button data-filter="Energie">Energie</button>
-        <button data-filter="Gestion des Dons en Nature (DEN) ">Dons en Nature</button>
-        <button data-filter="Assurance qualité">Assurance Qualité</button>
-        <button data-filter="Gestion de parc véhicules">Gestion Parc Véhicules</button>
-        <button data-filter="Management de l’équipe logistique">Management Équipe Logistique</button>
-        <button data-filter="Gestion des bâtiments">Gestion des bâtiments</button>
-        <button data-filter="clear">Effacer les filtres</button>
-    </div>
-
+    <!-- Search Bar (Moved to Top) -->
     <div class="search-header">
         <div class="search-row">
             <!-- 1. Logo Section (Left) -->
             <div class="section-image-container" id="section-image">
-                <!-- Dynamically populated or default -->
                 <img src="Logo_acf.png" class="default-logo-search" alt="Logo Utils">
             </div>
 
@@ -88,7 +72,6 @@
                 <button id="helpBtn" class="help-button" title="Astuces de recherche">
                     <i class="fas fa-info-circle"></i>
                 </button>
-                <!-- Tooltip Content -->
                 <div id="helpTooltip" class="help-tooltip">
                     <p><strong>Astuce :</strong> Filtrer par...</p>
                     <ul>
@@ -100,6 +83,22 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="filters">
+        <button data-filter="all" class="active">Tous</button>
+        <button data-filter="Chaîne d'appovisionnement">Chaîne d'approvisionnement</button>
+        <button data-filter="Gestion de stocks">Gestion des stocks</button>
+        <button data-filter="Gestion de achats">Gestion des achats</button>
+        <button data-filter="Transport">Transport</button>
+        <button data-filter="Equipements">Equipements</button>
+        <button data-filter="Energie">Energie</button>
+        <button data-filter="Gestion des Dons en Nature (DEN) ">Dons en Nature</button>
+        <button data-filter="Assurance qualité">Assurance Qualité</button>
+        <button data-filter="Gestion de parc véhicules">Gestion Parc Véhicules</button>
+        <button data-filter="Management de l’équipe logistique">Management Équipe Logistique</button>
+        <button data-filter="Gestion des bâtiments">Gestion des bâtiments</button>
+        <button data-filter="clear">Effacer les filtres</button>
     </div>
 
     <div id="logistics-sections-container">

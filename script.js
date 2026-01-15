@@ -75,21 +75,15 @@ searchInput.addEventListener('input', function () {
 
             // Afficher les rectangles (acteur et localisation) si un terme de recherche est présent
             if (searchTerm) {
-                processus.classList.add('search-active'); // Add class for styling hooks
-                if (actorRectangle) {
-                    actorRectangle.textContent = processus.dataset.actors;
-                    actorRectangle.style.display = 'block';
-                }
+                processus.classList.add('search-active');
                 localisationElement.style.display = 'block';
             } else {
-                processus.classList.remove('search-active'); // Remove class
-                if (actorRectangle) actorRectangle.style.display = 'none';
+                processus.classList.remove('search-active');
                 localisationElement.style.display = 'none';
             }
 
         } else {
             processus.style.display = 'none';
-            if (actorRectangle) actorRectangle.style.display = 'none';
             localisationElement.style.display = 'none';
         }
     });
