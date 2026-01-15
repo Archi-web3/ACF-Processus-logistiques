@@ -36,13 +36,43 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
-    z-index: 100;
+    background: linear-gradient(135deg, var(--acf-green), #45a049);
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    /* Reduced padding */
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    /* Reduced margin */
+    position: relative;
+    overflow: hidden;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png');
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2em;
+    /* Slightly smaller */
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .logo {
-    height: 60px;
-    margin-right: 20px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    max-width: 120px;
+    /* Smaller logo */
+    margin-bottom: 5px;
 }
 
 h1 {
@@ -75,23 +105,37 @@ h2::after {
 }
 
 /* Search & Utility Bar */
+/* Search Header */
 .search-header {
+    text-align: center;
+    margin-bottom: 15px;
+    /* Reduced */
+}
+
+.search-bar-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 40px;
-    margin: 40px 0;
-    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.search-bar {
+    position: relative;
+    width: 60%;
+    max-width: 500px;
 }
 
 .search-bar input {
-    padding: 15px 20px;
-    width: 350px;
-    border: 2px solid #e0e0e0;
+    width: 100%;
+    padding: 12px 20px;
+    padding-left: 45px;
+    border: 2px solid transparent;
     border-radius: 30px;
     font-size: 1em;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: white url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/svgs/solid/search.svg') no-repeat 15px center;
+    background-size: 18px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .search-bar input:focus {
