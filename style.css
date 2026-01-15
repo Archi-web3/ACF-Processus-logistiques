@@ -258,7 +258,8 @@ h2::after {
 /* Filters */
 .filters {
     text-align: center;
-    margin: 30px 20px;
+    margin: 8px 20px 10px 20px;
+    /* 8px top for space after header, 10px bottom */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -356,15 +357,26 @@ h2::after {
 
 /* Arrow between process cards */
 .processus:not(:last-child)::after {
-    content: '→';
+    content: '';
     position: absolute;
-    right: -20px;
+    right: -25px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 2em;
-    color: var(--acf-blue);
-    font-weight: bold;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 20px solid var(--acf-blue);
     z-index: 10;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.processus:not(:last-child):hover::after {
+    opacity: 1;
+    right: -28px;
+    border-left-color: var(--acf-orange);
+    transform: translateY(-50%) scale(1.2);
 }
 
 .processus i {
