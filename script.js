@@ -54,7 +54,6 @@ searchInput.addEventListener('input', function () {
         const text = processus.textContent.toLowerCase();
         const actors = processus.dataset.actors ? processus.dataset.actors.toLowerCase() : '';
         const typeControle = processus.dataset.typeControle ? processus.dataset.typeControle.toLowerCase() : '';
-        const actorRectangle = processus.querySelector('.actor-rectangle');
         const localisationElement = processus.querySelector('.localisation');
 
         // Récupérer les localisations
@@ -76,12 +75,9 @@ searchInput.addEventListener('input', function () {
             // Afficher les rectangles (acteur et localisation) si un terme de recherche est présent
             if (searchTerm) {
                 processus.classList.add('search-active'); // Add class for styling hooks
-                actorRectangle.textContent = processus.dataset.actors;
-                actorRectangle.style.display = 'block';
                 localisationElement.style.display = 'block';
             } else {
                 processus.classList.remove('search-active'); // Remove class
-                actorRectangle.style.display = 'none';
                 localisationElement.style.display = 'none';
             }
 
@@ -408,7 +404,6 @@ function createCard(item) {
     // Inner HTML Structure
     // Relocated actor-rectangle to top, removed absolute positioning styles
     card.innerHTML = `
-        <div class="actor-rectangle" style="display:none;"></div>
         ${pdfIconHtml}
         <i class="${iconClass}"></i>
         <div class="card-title">${item.Activité}</div>
