@@ -128,14 +128,16 @@ h2::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 60px;
+    min-width: 50px;
+    margin-right: 10px;
 }
 
 .default-logo-search,
 .section-image-container img {
-    max-height: 60px;
-    /* Constrain height to match search bar approx */
+    max-height: 50px;
+    /* Constrain height strictly */
     width: auto;
+    max-width: 100px;
     object-fit: contain;
     transition: all 0.3s ease;
 }

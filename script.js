@@ -140,8 +140,8 @@ btns.forEach(btn => {
                 const logoSrc = getLogoForSection(sectionToShow);
                 sectionImageContainer.innerHTML = `<img src="${logoSrc}" alt="${sectionToShow}" class="default-logo-search">`;
             } else {
-                // Show default logo
-                sectionImageContainer.innerHTML = `<img src="Processus.png" class="default-logo-search" alt="Logo Processus">`;
+                // Show default logo (ACF Small)
+                sectionImageContainer.innerHTML = `<img src="Logo_acf.png" class="default-logo-search" alt="Logo ACF">`;
             }
         }
     });
