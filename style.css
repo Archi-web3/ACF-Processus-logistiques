@@ -30,21 +30,17 @@ body {
 .header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--acf-green) 0%, #3e8e41 100%);
-    padding: 15px 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
+    justify-content: flex-start;
+    /* Left aligned */
     background: linear-gradient(135deg, var(--acf-green), #45a049);
     color: white;
-    text-align: center;
-    padding: 15px 10px;
+    text-align: left;
+    /* Left align text */
+    padding: 10px 20px;
     /* Reduced padding */
     border-radius: 0 0 30px 30px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     margin-bottom: 20px;
-    /* Reduced margin */
     position: relative;
     overflow: hidden;
 }
@@ -63,16 +59,18 @@ body {
 
 .header h1 {
     margin: 0;
-    font-size: 2em;
-    /* Slightly smaller */
+    font-size: 1.5em;
+    /* Significantly smaller */
     font-weight: 700;
     letter-spacing: 1px;
 }
 
 .logo {
-    max-width: 120px;
-    /* Smaller logo */
-    margin-bottom: 5px;
+    max-width: 60px;
+    /* Small logo */
+    margin-bottom: 0;
+    margin-right: 20px;
+    /* Spacing between logo and title */
 }
 
 h1 {
@@ -395,6 +393,8 @@ h2::after {
 .category-image {
     text-align: center;
     margin: 30px 0;
+    display: none !important;
+    /* Hide default image as requested */
     animation: float 6s ease-in-out infinite;
 }
 
