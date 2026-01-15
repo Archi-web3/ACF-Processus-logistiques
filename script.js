@@ -1,0 +1,318 @@
+const toggleDarkMode = document.getElementById('toggleDarkMode');
+
+toggleDarkMode.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    toggleDarkMode.textContent = document.body.classList.contains('dark-mode') ? 'Mode Clair' : 'Mode Sombre';
+});
+
+function afficherImageEnGrand(imageUrl, event) {
+    event.stopPropagation();
+    const overlay = document.getElementById('overlay');
+    const imageEnGrand = document.getElementById('imageEnGrand');
+    imageEnGrand.src = imageUrl;
+    overlay.style.display = 'flex';
+}
+
+function masquerImageEnGrand() {
+    document.getElementById('overlay').style.display = 'none';
+}
+
+document.addEventListener('click', function (event) {
+    if (!event.target.closest('.processus')) {
+        const popups = document.querySelectorAll('.popup');
+        popups.forEach(popup => popup.remove());
+
+        const actorRectangles = document.querySelectorAll('.actor-rectangle');
+        actorRectangles.forEach(rect => rect.style.display = 'none');
+    }
+});
+
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', function () {
+    const searchTerm = this.value.toLowerCase();
+    const processusList = document.querySelectorAll('.processus');
+
+    processusList.forEach(processus => {
+        const text = processus.textContent.toLowerCase();
+        const actors = processus.dataset.actors ? processus.dataset.actors.toLowerCase() : '';
+        const typeControle = processus.dataset.typeControle ? processus.dataset.typeControle.toLowerCase() : '';
+        const actorRectangle = processus.querySelector('.actor-rectangle');
+        const localisationElement = processus.querySelector('.localisation');
+
+        // Récupérer les localisations
+        const isHQ = processus.dataset.hq === 'true';
+        const isCoordination = processus.dataset.coordination === 'true';
+        const isBase = processus.dataset.base === 'true';
+
+        // Vérifier si le terme de recherche est dans les localisations
+        const matchesHQ = isHQ && 'hq'.includes(searchTerm);
+        const matchesCoordination = isCoordination && 'coordination'.includes(searchTerm);
+        const matchesBase = isBase && 'base'.includes(searchTerm);
+
+        // Vérifier si le terme de recherche est dans le texte, les acteurs, le type de contrôle ou les localisations
+        const matchesSearch = text.includes(searchTerm) || actors.includes(searchTerm) || typeControle.includes(searchTerm) || matchesHQ || matchesCoordination || matchesBase;
+
+        if (matchesSearch) {
+            processus.style.display = 'block';
+
+            // Afficher les rectangles (acteur et localisation) si un terme de recherche est présent
+            if (searchTerm) {
+                actorRectangle.textContent = processus.dataset.actors;
+                actorRectangle.style.display = 'block';
+                localisationElement.style.display = 'block';
+            } else {
+                actorRectangle.style.display = 'none';
+                localisationElement.style.display = 'none';
+            }
+
+        } else {
+            processus.style.display = 'none';
+            actorRectangle.style.display = 'none';
+            localisationElement.style.display = 'none';
+        }
+    });
+});
+
+const btns = document.querySelectorAll('.filters button');
+
+btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        document.querySelector('.default-image').style.display = 'none';
+
+        document.querySelectorAll('.section-container').forEach(c => {
+            const category = c.dataset.category;
+
+            if (filter === 'all') {
+                c.style.display = 'block';
+            } else if (filter === 'clear') {
+                document.querySelectorAll('.section-container').forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.querySelector('.default-image').style.display = 'block';
+            } else {
+                // Vérifiez si le nom de la section correspond au filtre (insensible à la casse)
+                if (category.toLowerCase() === filter.toLowerCase()) {
+                    c.style.display = 'block';
+                } else {
+                    c.style.display = 'none';
+                }
+            }
+        });
+
+        // Met à jour l’image à chaque clic, selon le filtre
+        const sectionImageDiv = document.getElementById('section-image');
+        if (sectionImageDiv) {
+            let sectionToShow = null;
+            if (filter === 'all') {
+                // Si tout est affiché, optionnel
+            } else if (filter !== 'clear') {
+                document.querySelectorAll('.section-container').forEach(c => {
+                    if (c.style.display === 'block') {
+                        sectionToShow = c.dataset.category;
+                        return;
+                    }
+                });
+            }
+
+            if (sectionToShow) {
+                sectionImageDiv.innerHTML = `<img src="${getLogoForSection(sectionToShow)}" style="max-width:100%;">`;
+            } else {
+                sectionImageDiv.innerHTML = `<img src="Logo_acf.png" style="max-width:100%;">`;
+            }
+        }
+    });
+});
+
+function attachSectionEvents(containerId, dataFilter) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+        console.error(`Container with id "${containerId}" not found.`);
+        return;
+    }
+
+    container.querySelectorAll('.processus').forEach(processus => {
+        processus.addEventListener('click', function (event) {
+            event.stopPropagation();
+            const actorRectangle = processus.querySelector('.actor-rectangle');
+            const popupContent = this.dataset.popupContent;
+            const existingPopup = processus.querySelector('.popup');
+
+            if (existingPopup) {
+                existingPopup.remove();
+            } else {
+                const popupDiv = document.createElement('div');
+                popupDiv.classList.add('popup');
+                popupDiv.innerHTML = popupContent;
+                popupDiv.innerHTML +=
+                    `<div style="margin-top: 10px;"><a href="https://nohungerforum.sharepoint.com/sites/KitLog/SitePages/fr/Home.aspx" target="_blank" class="popup-button">Accéder à l'outil</a></div>`;
+                processus.appendChild(popupDiv);
+                popupDiv.style.display = 'block';
+            }
+
+            actorRectangle.textContent = this.dataset.actors;
+            actorRectangle.style.display = actorRectangle.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+}
+
+let showSubProcessus = true;
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('processus_logistiques.json')
+        .then(response => response.json())
+        .then(data => {
+            const sectionsContainer = document.getElementById("logistics-sections-container");
+            const groupedData = groupDataByProcessus(data);
+
+            for (const processus in groupedData) {
+                const processusData = groupedData[processus];
+                createSection(sectionsContainer, processusData, processus);
+            }
+        })
+        .catch(error => console.error("Erreur:", error));
+
+    const toggleViewButton = document.getElementById("toggleView");
+    toggleViewButton.addEventListener("click", function () {
+        showSubProcessus = !showSubProcessus;
+        toggleViewButton.textContent = showSubProcessus ? "Afficher toutes les activités" :
+            "Afficher par sous-processus";
+
+        const sectionsContainer = document.getElementById("logistics-sections-container");
+        sectionsContainer.innerHTML = "";
+
+        fetch('processus_logistiques.json')
+            .then(response => response.json())
+            .then(data => {
+                const groupedData = groupDataByProcessus(data);
+                for (const processus in groupedData) {
+                    const processusData = groupedData[processus];
+                    createSection(sectionsContainer, processusData, processus);
+                }
+            })
+            .catch(error => console.error("Erreur:", error));
+    });
+});
+
+function groupDataByProcessus(data) {
+    return data.reduce((acc, item) => {
+        const processus = item.Processus;
+        if (!acc[processus]) {
+            acc[processus] = [];
+        }
+        acc[processus].push(item);
+        return acc;
+    }, {});
+}
+
+function getLogoForSection(sectionTitle) {
+    const logos = {
+        "Gestion de stocks": "Logo_Stock2.png",
+        "Gestion de achats": "Logo_Procurement.png",
+        "Transport": "Logo_transport.png",
+        "Equipements": "Logo_equipement.png",
+        "Energie": "Logo_energie.png",
+        "Gestion des Dons en Nature (DEN) ": "Logo_Donation.png",
+        "Assurance qualité": "QA.png",
+        "Gestion de parc véhicules": "Logo_fleet.png",
+        "Management de l’équipe logistique": "Logo_Team.png",
+        "Gestion des bâtiments": "Logo_acf.png"
+    };
+    return logos[sectionTitle] || "Logo_acf.png";
+}
+
+function createSection(container, sectionData, sectionTitle) {
+    console.log("Création section :", sectionTitle);
+    
+    const sectionContainer = document.createElement("div");
+    sectionContainer.className = "section-container";
+    sectionContainer.dataset.category = sectionTitle;
+    
+    // Titre de la section
+    const title = document.createElement("h2");
+    title.textContent = sectionTitle;
+    sectionContainer.appendChild(title);
+    
+    // Logique sous-processus vs plat
+    if (showSubProcessus) {
+        const subGroups = sectionData.reduce((acc, item) => {
+            const sub = item['Sous processus'] || 'Autre';
+            if (!acc[sub]) acc[sub] = [];
+            acc[sub].push(item);
+            return acc;
+        }, {});
+
+        for (const [subName, items] of Object.entries(subGroups)) {
+            const subContainer = document.createElement('div');
+            subContainer.className = 'sous-processus-container';
+            
+            if(subName !== 'Autre') {
+                const subTitle = document.createElement('h3');
+                subTitle.textContent = subName;
+                subContainer.appendChild(subTitle);
+            }
+            
+            const frise = document.createElement('div');
+            frise.className = 'frise';
+            
+            items.forEach(item => {
+                frise.appendChild(createCard(item));
+            });
+            
+            subContainer.appendChild(frise);
+            sectionContainer.appendChild(subContainer);
+        }
+    } else {
+        const frise = document.createElement("div");
+        frise.className = "frise";
+        sectionData.forEach(item => {
+            frise.appendChild(createCard(item));
+        });
+        sectionContainer.appendChild(frise);
+    }
+
+    container.appendChild(sectionContainer);
+    attachSectionEvents(sectionContainer.id || "logistics-sections-container");
+}
+
+function createCard(item) {
+    const card = document.createElement('div');
+    card.className = 'processus';
+    card.dataset.actors = item.ACTEURS || '';
+    card.dataset.typeControle = item['Type de contrôle'] || '';
+    card.dataset.hq = item.HQ ? 'true' : 'false';
+    card.dataset.coordination = item.Coordination ? 'true' : 'false';
+    card.dataset.base = item.Base ? 'true' : 'false';
+    
+    // Popup content building
+    let popupHTML = `<strong>Objectifs:</strong> ${item.Objectifs || 'N/A'}<br><br>`;
+    popupHTML += `<strong>Type de contrôle:</strong> ${item['Type de contrôle'] || 'N/A'}<br>`;
+    popupHTML += `<div class="controle-popup">`;
+    if (item.Documentés) popupHTML += `Documentés: ${item.Documentés}<br>`;
+    if (item.Opérationnels) popupHTML += `Opérationnels: ${item.Opérationnels}<br>`;
+    popupHTML += `</div>`;
+    
+    card.dataset.popupContent = popupHTML;
+
+    // Icon handling
+    let iconClass = item.Icone || 'fa-cogs';
+    if(iconClass.startsWith('fa-')) iconClass = `fas ${iconClass}`;
+    
+    card.innerHTML = `
+        <div class="actor-rectangle" style="display:none;"></div>
+        <i class="${iconClass}"></i>
+        <div>${item.Activité}</div>
+        <div class="localisation" style="display:none;">
+            ${item.HQ ? '<i class="fas fa-building" title="Siège"></i>' : ''}
+            ${item.Coordination ? '<i class="fas fa-map-marker-alt" title="Coordination"></i>' : ''}
+            ${item.Base ? '<i class="fas fa-home" title="Base"></i>' : ''}
+        </div>
+        <!-- Flèche animée si besoin (optionnelle) -->
+    `;
+    
+    return card;
+}
