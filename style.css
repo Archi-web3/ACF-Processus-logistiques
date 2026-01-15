@@ -48,6 +48,15 @@ body {
     overflow: hidden;
 }
 
+/* Force zero margins on all elements after header */
+.header~* {
+    margin-top: 0 !important;
+}
+
+body>div:not(.header) {
+    margin-top: 0 !important;
+}
+
 .header::after {
     content: '';
     position: absolute;
@@ -109,8 +118,8 @@ h2::after {
 /* Search Header */
 /* Search Header */
 .search-header {
-    margin: 0;
-    padding: 0 10px;
+    margin: 0 !important;
+    padding: 0 10px !important;
 }
 
 .search-row {
