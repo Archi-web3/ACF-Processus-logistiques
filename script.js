@@ -405,8 +405,7 @@ function createCard(item) {
     }
 
     // Popup content building - RESTORED FULL DATA
-    let popupHTML = `<h3>${item.Activité}</h3>`;
-    popupHTML += `<strong>Objectifs:</strong> ${item.Objectifs || 'N/A'}<br><br>`;
+    let popupHTML = `<strong>Objectifs:</strong> ${item.Objectifs || 'N/A'}<br><br>`;
 
     // Actors removed from popup - they appear on card banner during search
     // if (computedActors) popupHTML += `<strong>Acteurs:</strong> ${computedActors}<br>`;

@@ -258,8 +258,8 @@ h2::after {
 /* Filters */
 .filters {
     text-align: center;
-    margin: 8px 20px 10px 20px;
-    /* 8px top for space after header, 10px bottom */
+    margin: 2px 20px 5px 20px;
+    /* Minimal top margin, compact layout */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
