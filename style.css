@@ -355,22 +355,27 @@ h2::after {
 
 
 /* Actors & Details */
+/* Actors & Details */
 .actor-rectangle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    left: auto;
-    transform: none;
+    position: relative;
+    /* Changed from absolute */
+    width: 100%;
     background-color: rgba(0, 95, 182, 0.1);
     color: var(--acf-blue);
     border: 1px solid rgba(0, 95, 182, 0.2);
     border-radius: 8px;
-    padding: 5px 10px;
+    padding: 2px 5px;
     font-size: 0.75em;
     font-weight: 600;
     box-shadow: none;
-    display: inline-block;
-    z-index: 2;
+    display: none;
+    /* Controlled by JS */
+    margin-bottom: 5px;
+    /* Push icon down */
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .processus .details {

@@ -404,6 +404,7 @@ function createCard(item) {
     }
 
     // Inner HTML Structure
+    // Relocated actor-rectangle to top, removed absolute positioning styles
     card.innerHTML = `
         <div class="actor-rectangle" style="display:none;"></div>
         ${pdfIconHtml}
