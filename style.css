@@ -586,3 +586,35 @@ body.dark-mode .help-tooltip {
 body.dark-mode .help-tooltip::before {
     border-color: transparent transparent #333 transparent;
 }
+
+/* =========================================
+   ANALYSIS MODE
+   ========================================= */
+.analysis-active .processus {
+    opacity: 0.3;
+    /* Dim everything by default */
+    transition: all 0.5s ease;
+    border-width: 3px !important;
+}
+
+/* 1. HQ Only (Orange) - Priority for Decentralization */
+.analysis-active .processus.is-hq-only {
+    opacity: 1;
+    border-color: orange !important;
+    background-color: rgba(255, 165, 0, 0.1) !important;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.4);
+}
+
+/* 2. Shared (Blue) */
+.analysis-active .processus.is-shared {
+    opacity: 1;
+    border-color: #3498db !important;
+    background-color: rgba(52, 152, 219, 0.1) !important;
+}
+
+/* 3. Field Only (Green) - Optimized */
+.analysis-active .processus.is-field {
+    opacity: 1;
+    border-color: var(--acf-green) !important;
+    background-color: rgba(82, 174, 50, 0.1) !important;
+}

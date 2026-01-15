@@ -216,6 +216,29 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error("Erreur:", error));
     });
+
+    /* Analysis Mode Toggle */
+    const toggleAnalysisBtn = document.getElementById("toggleAnalysis");
+    const analysisLegend = document.getElementById("analysisLegend");
+
+    if (toggleAnalysisBtn) {
+        toggleAnalysisBtn.addEventListener("click", function () {
+            document.body.classList.toggle("analysis-mode"); // Toggle styling scope
+
+            // Use a class on the grid container to trigger CSS transitions
+            const sectionsContainer = document.getElementById("logistics-sections-container");
+            sectionsContainer.classList.toggle("analysis-active");
+
+            const isActive = sectionsContainer.classList.contains("analysis-active");
+
+            toggleAnalysisBtn.innerHTML = isActive
+                ? '<i class="fas fa-times"></i> Mode Normal'
+                : '<i class="fas fa-chart-pie"></i> Mode Analyse';
+
+            toggleAnalysisBtn.style.backgroundColor = isActive ? "#e74c3c" : "var(--acf-blue)";
+            analysisLegend.style.display = isActive ? "flex" : "none";
+        });
+    }
 });
 
 function groupDataByProcessus(data) {
@@ -362,6 +385,19 @@ function createCard(item) {
     card.dataset.hq = item.HQ ? 'true' : 'false';
     card.dataset.coordination = item.Coordination ? 'true' : 'false';
     card.dataset.base = item.Base ? 'true' : 'false';
+
+    /* Analysis Classes Calculation */
+    const isHQ = item.HQ;
+    const isCoord = item.Coordination;
+    const isBase = item.Base;
+
+    if (isHQ && !isCoord && !isBase) {
+        card.classList.add('is-hq-only');
+    } else if (isHQ && (isCoord || isBase)) {
+        card.classList.add('is-shared');
+    } else if (!isHQ && (isCoord || isBase)) {
+        card.classList.add('is-field');
+    }
 
     // Popup content building - RESTORED FULL DATA
     let popupHTML = `<h3>${item.Activité}</h3>`;
