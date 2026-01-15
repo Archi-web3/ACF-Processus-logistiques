@@ -55,6 +55,7 @@ searchInput.addEventListener('input', function () {
         const actors = processus.dataset.actors ? processus.dataset.actors.toLowerCase() : '';
         const typeControle = processus.dataset.typeControle ? processus.dataset.typeControle.toLowerCase() : '';
         const localisationElement = processus.querySelector('.localisation');
+        const actorRectangle = processus.querySelector('.actor-rectangle');
 
         // Récupérer les localisations
         const isHQ = processus.dataset.hq === 'true';
@@ -75,15 +76,20 @@ searchInput.addEventListener('input', function () {
             // Afficher les rectangles (acteur et localisation) si un terme de recherche est présent
             if (searchTerm) {
                 processus.classList.add('search-active'); // Add class for styling hooks
+                if (actorRectangle) {
+                    actorRectangle.textContent = processus.dataset.actors;
+                    actorRectangle.style.display = 'block';
+                }
                 localisationElement.style.display = 'block';
             } else {
                 processus.classList.remove('search-active'); // Remove class
+                if (actorRectangle) actorRectangle.style.display = 'none';
                 localisationElement.style.display = 'none';
             }
 
         } else {
             processus.style.display = 'none';
-            actorRectangle.style.display = 'none';
+            if (actorRectangle) actorRectangle.style.display = 'none';
             localisationElement.style.display = 'none';
         }
     });
