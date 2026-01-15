@@ -438,8 +438,9 @@ function createCard(item) {
     }
 
     // Inner HTML Structure
-    // Relocated actor-rectangle to top, removed absolute positioning styles
+    // Restored Actor Banner as per user request
     card.innerHTML = `
+        <div class="actor-rectangle" style="display:none;"></div>
         ${pdfIconHtml}
         <i class="${iconClass}"></i>
         <div class="card-title">${item.Activité}</div>
