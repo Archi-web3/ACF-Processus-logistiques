@@ -531,3 +531,77 @@ img[src*="Processus.png"] {
 #logistics-sections-container {
     width: 100%;
 }
+
+/* =========================================
+   DARK MODE
+   ========================================= */
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    background-image: none;
+}
+
+body.dark-mode .header {
+    background: linear-gradient(135deg, #1a252f, #2c3e50) !important;
+}
+
+body.dark-mode .section-container,
+body.dark-mode .sous-processus-container {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .processus {
+    background: rgba(50, 50, 50, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .processus:hover {
+    background: rgba(60, 60, 60, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode h2 {
+    color: var(--acf-blue);
+    /* Keep blue branding or adjust to lighter blue if needed */
+}
+
+body.dark-mode .card-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .filters button {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+body.dark-mode .filters button.active {
+    background-color: var(--acf-orange);
+    color: white;
+    border-color: var(--acf-orange);
+}
+
+body.dark-mode .search-bar input {
+    background-color: #333;
+    color: white;
+    border-color: #555;
+}
+
+body.dark-mode .help-button {
+    color: #aaa;
+}
+
+body.dark-mode .help-button:hover {
+    color: var(--acf-orange);
+}
+
+body.dark-mode .help-tooltip {
+    background-color: #333;
+    color: #f0f0f0;
+    border-color: #555;
+}
+
+body.dark-mode .help-tooltip::before {
+    border-color: transparent transparent #333 transparent;
+}

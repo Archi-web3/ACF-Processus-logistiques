@@ -371,8 +371,8 @@ function createCard(item) {
     let popupHTML = `<h3>${item.Activité}</h3>`;
     popupHTML += `<strong>Objectifs:</strong> ${item.Objectifs || 'N/A'}<br><br>`;
 
-    // Restore Actors
-    if (computedActors) popupHTML += `<strong>Acteurs:</strong> ${computedActors}<br>`;
+    // Restore Actors - Removed from popup as requested
+    // if (computedActors) popupHTML += `<strong>Acteurs:</strong> ${computedActors}<br>`;
 
     popupHTML += `<strong>Type de contrôle:</strong> ${item['Type de contrôle'] || 'N/A'}<br>`;
 
