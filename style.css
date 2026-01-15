@@ -32,15 +32,17 @@ body {
     align-items: center;
     justify-content: flex-start;
     /* Left aligned */
-    background: linear-gradient(135deg, var(--acf-green), #45a049);
+    background: linear-gradient(135deg, var(--acf-blue), #004c91);
+    /* Blue background */
     color: white;
     text-align: left;
-    /* Left align text */
-    padding: 10px 20px;
-    /* Reduced padding */
-    border-radius: 0 0 30px 30px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    margin-bottom: 20px;
+    padding: 5px 20px;
+    /* Highly reduced padding */
+    border-radius: 0 0 20px 20px;
+    /* Smaller radius */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px;
+    /* Reduced margin */
     position: relative;
     overflow: hidden;
 }
@@ -389,13 +391,30 @@ h2::after {
     padding: 10px;
 }
 
+.logo {
+    max-width: 50px;
+    /* Small logo */
+    margin-bottom: 0;
+    margin-right: 15px;
+}
+
 .default-image,
 .category-image {
     text-align: center;
-    margin: 30px 0;
-    display: none !important;
-    /* Hide default image as requested */
+    margin: 10px 0;
+    /* Reduced margin */
+    display: block !important;
+    /* Restore but styled */
+    opacity: 0.8;
     animation: float 6s ease-in-out infinite;
+}
+
+.default-image img,
+.category-image img {
+    max-height: 120px;
+    /* Force small height */
+    width: auto;
+    object-fit: contain;
 }
 
 @keyframes float {

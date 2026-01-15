@@ -44,25 +44,27 @@
     </div>
 
     <div class="search-header">
-        <div class="section-image" id="section-image">
-            <!-- L’image de la section s’affichera ici -->
-        </div>
+        <div class="search-row"
+            style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <div class="search-bar-container" style="flex: 1; min-width: 300px; max-width: 500px; margin-top:0;">
+                <div class="search-bar" style="width:100%;">
+                    <input type="text" id="searchInput" placeholder="Rechercher un processus ou un acteur...">
+                </div>
+            </div>
 
-        <div class="search-bar-container">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Rechercher un processus ou un acteur...">
+            <div class="search-help" style="margin: 0; padding: 5px 15px; font-size: 0.8em; text-align: left;">
+                <p style="margin:0 0 5px 0;"><strong>Astuce :</strong> filtrer par...</p>
+                <ul style="margin:0; padding-left: 15px;">
+                    <li>Activité, Acteurs</li>
+                    <li>Type de contrôle</li>
+                    <li>Localisation <i class="fas fa-building"></i> <i class="fas fa-map-marker-alt"></i> <i
+                            class="fas fa-home"></i></li>
+                </ul>
             </div>
         </div>
 
-        <div class="search-help">
-            <p><strong>Astuce de recherche :</strong> filtrer par...</p>
-            <ul>
-                <li>Activité (ex: préparation entrepôt)</li>
-                <li>Acteurs (ex: gestionnaire stock)</li>
-                <li>Type de contrôle (ex: documentés, opérationnels)</li>
-                <li>Localisation (ex: HQ <i class="fas fa-building"></i>, Coordination <i
-                        class="fas fa-map-marker-alt"></i>, Base <i class="fas fa-home"></i>)</li>
-            </ul>
+        <div class="section-image" id="section-image">
+            <!-- Dynamically populated or kept empty -->
         </div>
     </div>
 
