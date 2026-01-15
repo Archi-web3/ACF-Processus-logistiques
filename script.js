@@ -311,10 +311,37 @@ function ouvrirPdf(pdfUrl, page) {
     overlay.style.display = 'flex';
 }
 
+function getActorsFromItem(item) {
+    if (item.ACTEURS && item.ACTEURS.trim() !== "") {
+        return item.ACTEURS;
+    }
+
+    // List of potential role columns based on JSON structure
+    const roleKeys = [
+        "DRO", "CFR", "RLR", "Référent Tech siège", "Pharmacien siège",
+        "Directeur pays", "RDD Log", "RDD Technique", "RDD Fin", "CT", "RP",
+        "Gestionnaire de stock", "RLog/RAppo", "RFin", "RRH"
+    ];
+
+    let actors = [];
+    roleKeys.forEach(key => {
+        if (item[key]) {
+            // Optional: Include the RACI code? e.g. "RLog (R)"
+            // For now, just listing the roles for searchability seems safest.
+            actors.push(`${key} (${item[key]})`);
+        }
+    });
+
+    return actors.join(", ");
+}
+
 function createCard(item) {
     const card = document.createElement('div');
     card.className = 'processus';
-    card.dataset.actors = item.ACTEURS || '';
+
+    const computedActors = getActorsFromItem(item);
+
+    card.dataset.actors = computedActors || '';
     card.dataset.typeControle = item['Type de contrôle'] || '';
     card.dataset.hq = item.HQ ? 'true' : 'false';
     card.dataset.coordination = item.Coordination ? 'true' : 'false';
@@ -325,7 +352,7 @@ function createCard(item) {
     popupHTML += `<strong>Objectifs:</strong> ${item.Objectifs || 'N/A'}<br><br>`;
 
     // Restore Actors
-    if (item.ACTEURS) popupHTML += `<strong>Acteurs:</strong> ${item.ACTEURS}<br>`;
+    if (computedActors) popupHTML += `<strong>Acteurs:</strong> ${computedActors}<br>`;
 
     popupHTML += `<strong>Type de contrôle:</strong> ${item['Type de contrôle'] || 'N/A'}<br>`;
 
