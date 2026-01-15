@@ -32,8 +32,8 @@ body {
     align-items: center;
     justify-content: flex-start;
     /* Left aligned */
-    background: linear-gradient(135deg, var(--acf-blue), #004c91);
-    /* Blue background */
+    background: linear-gradient(135deg, var(--acf-blue), #004c91) !important;
+    /* Blue background Forced */
     color: white;
     text-align: left;
     padding: 5px 20px;
