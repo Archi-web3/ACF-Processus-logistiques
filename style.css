@@ -42,8 +42,8 @@ body {
     border-radius: 0 0 20px 20px;
     /* Smaller radius */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    margin-bottom: 2px;
-    /* Minimal margin for tight layout */
+    margin-bottom: 5px;
+    /* Small space after header */
     position: relative;
     overflow: hidden;
 }
