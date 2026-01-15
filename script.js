@@ -5,6 +5,24 @@ toggleDarkMode.addEventListener('click', () => {
     toggleDarkMode.textContent = document.body.classList.contains('dark-mode') ? 'Mode Clair' : 'Mode Sombre';
 });
 
+// Help Tooltip Logic
+const helpBtn = document.getElementById('helpBtn');
+const helpTooltip = document.getElementById('helpTooltip');
+
+if (helpBtn && helpTooltip) {
+    helpBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        helpTooltip.classList.toggle('show');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+        if (!helpTooltip.contains(e.target) && e.target !== helpBtn) {
+            helpTooltip.classList.remove('show');
+        }
+    });
+}
+
 function afficherImageEnGrand(imageUrl, event) {
     event.stopPropagation();
     const overlay = document.getElementById('overlay');
@@ -105,25 +123,25 @@ btns.forEach(btn => {
         });
 
         // Met à jour l’image à chaque clic, selon le filtre
-        const sectionImageDiv = document.getElementById('section-image');
-        if (sectionImageDiv) {
+        const sectionImageContainer = document.getElementById('section-image');
+        if (sectionImageContainer) {
             let sectionToShow = null;
             if (filter === 'all') {
-                // Si tout est affiché, optionnel
+                // Si tout est affiché
             } else if (filter !== 'clear') {
+                // Find visible section
                 document.querySelectorAll('.section-container').forEach(c => {
-                    if (c.style.display === 'block') {
-                        sectionToShow = c.dataset.category;
-                        return;
-                    }
+                    if (c.dataset.category === filter) sectionToShow = c.dataset.category;
                 });
             }
 
             if (sectionToShow) {
-                // If specific section, no need to show main image here as it's now in headers
-                sectionImageDiv.innerHTML = '';
+                // Show specific logo
+                const logoSrc = getLogoForSection(sectionToShow);
+                sectionImageContainer.innerHTML = `<img src="${logoSrc}" alt="${sectionToShow}" class="default-logo-search">`;
             } else {
-                sectionImageDiv.innerHTML = `<img src="Logo_acf.png" style="max-width:100%;">`;
+                // Show default logo
+                sectionImageContainer.innerHTML = `<img src="Processus.png" class="default-logo-search" alt="Logo Processus">`;
             }
         }
     });

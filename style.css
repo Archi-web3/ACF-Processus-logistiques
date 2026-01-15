@@ -106,29 +106,60 @@ h2::after {
 
 /* Search & Utility Bar */
 /* Search Header */
+/* Search Header */
 .search-header {
-    text-align: center;
-    margin-bottom: 15px;
-    /* Reduced */
+    margin-bottom: 20px;
+    padding: 0 20px;
 }
 
-.search-bar-container {
+.search-row {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 1. Logo in Search Bar */
+.section-image-container {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+}
+
+.default-logo-search,
+.section-image-container img {
+    max-height: 60px;
+    /* Constrain height to match search bar approx */
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* 2. Search Bar */
+.search-bar-container {
+    flex: 1;
+    /* Take available space */
+    max-width: 500px;
+    margin: 0;
+    /* Reset margins */
 }
 
 .search-bar {
     position: relative;
-    width: 60%;
-    max-width: 500px;
+    width: 100%;
 }
 
 .search-bar input {
     width: 100%;
     padding: 12px 20px;
     padding-left: 45px;
-    border: 2px solid transparent;
+    border: 2px solid #ddd;
+    /* Visible border */
     border-radius: 30px;
     font-size: 1em;
     outline: none;
@@ -139,20 +170,77 @@ h2::after {
 }
 
 .search-bar input:focus {
-    outline: none;
     border-color: var(--acf-blue);
     box-shadow: 0 4px 15px rgba(0, 95, 182, 0.2);
-    width: 380px;
 }
 
-.search-help {
-    font-size: 0.9em;
-    color: #555;
+/* 3. Help Button & Tooltip */
+.help-container {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.help-button {
+    background: transparent;
+    border: none;
+    color: var(--acf-blue);
+    font-size: 1.5em;
+    /* Large Icon */
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.help-button:hover {
+    color: var(--acf-orange);
+    transform: scale(1.1);
+}
+
+.help-tooltip {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    /* Below button */
+    right: 0;
+    /* Align right to container */
+    width: 280px;
     background: white;
-    padding: 15px 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-left: 5px solid var(--acf-orange);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid #eee;
+    z-index: 1000;
+    font-size: 0.9em;
+    color: #444;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.help-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    border-width: 0 8px 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
+
+.help-tooltip.show {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.help-tooltip ul {
+    margin: 5px 0 0 0;
+    padding-left: 20px;
+}
+
+.help-tooltip li {
+    margin-bottom: 3px;
 }
 
 /* Filters */
@@ -398,23 +486,9 @@ h2::after {
     margin-right: 15px;
 }
 
-.default-image,
-.category-image {
-    text-align: center;
-    margin: 10px 0;
-    /* Reduced margin */
-    display: block !important;
-    /* Restore but styled */
-    opacity: 0.8;
-    animation: float 6s ease-in-out infinite;
-}
-
-.default-image img,
-.category-image img {
-    max-height: 120px;
-    /* Force small height */
-    width: auto;
-    object-fit: contain;
+/* Default image handled in search header now */
+.default-logo-search {
+    transition: opacity 0.3s;
 }
 
 @keyframes float {
