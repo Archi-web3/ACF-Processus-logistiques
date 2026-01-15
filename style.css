@@ -354,6 +354,19 @@ h2::after {
     opacity: 1;
 }
 
+/* Arrow between process cards */
+.processus:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2em;
+    color: var(--acf-blue);
+    font-weight: bold;
+    z-index: 10;
+}
+
 .processus i {
     font-size: 24px;
     /* Reduced from 32px */
