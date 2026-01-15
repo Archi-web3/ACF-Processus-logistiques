@@ -120,7 +120,8 @@ btns.forEach(btn => {
             }
 
             if (sectionToShow) {
-                sectionImageDiv.innerHTML = `<img src="${getLogoForSection(sectionToShow)}" style="max-width:100%;">`;
+                // If specific section, no need to show main image here as it's now in headers
+                sectionImageDiv.innerHTML = '';
             } else {
                 sectionImageDiv.innerHTML = `<img src="Logo_acf.png" style="max-width:100%;">`;
             }
@@ -227,16 +228,28 @@ function getLogoForSection(sectionTitle) {
 
 function createSection(container, sectionData, sectionTitle) {
     console.log("Création section :", sectionTitle);
-    
+
     const sectionContainer = document.createElement("div");
     sectionContainer.className = "section-container";
     sectionContainer.dataset.category = sectionTitle;
-    
-    // Titre de la section
+
+    // Header Row with Small Logo + Title
+    const headerRow = document.createElement("div");
+    headerRow.className = "section-header-row";
+
+    const logoImg = document.createElement("img");
+    logoImg.className = "section-logo-small";
+    logoImg.src = getLogoForSection(sectionTitle);
+    logoImg.alt = sectionTitle;
+
     const title = document.createElement("h2");
     title.textContent = sectionTitle;
-    sectionContainer.appendChild(title);
-    
+
+    headerRow.appendChild(logoImg);
+    headerRow.appendChild(title);
+
+    sectionContainer.appendChild(headerRow);
+
     // Logique sous-processus vs plat
     if (showSubProcessus) {
         const subGroups = sectionData.reduce((acc, item) => {
@@ -249,20 +262,20 @@ function createSection(container, sectionData, sectionTitle) {
         for (const [subName, items] of Object.entries(subGroups)) {
             const subContainer = document.createElement('div');
             subContainer.className = 'sous-processus-container';
-            
-            if(subName !== 'Autre') {
+
+            if (subName !== 'Autre') {
                 const subTitle = document.createElement('h3');
                 subTitle.textContent = subName;
                 subContainer.appendChild(subTitle);
             }
-            
+
             const frise = document.createElement('div');
             frise.className = 'frise';
-            
+
             items.forEach(item => {
                 frise.appendChild(createCard(item));
             });
-            
+
             subContainer.appendChild(frise);
             sectionContainer.appendChild(subContainer);
         }
@@ -287,32 +300,46 @@ function createCard(item) {
     card.dataset.hq = item.HQ ? 'true' : 'false';
     card.dataset.coordination = item.Coordination ? 'true' : 'false';
     card.dataset.base = item.Base ? 'true' : 'false';
-    
-    // Popup content building
-    let popupHTML = `<strong>Objectifs:</strong> ${item.Objectifs || 'N/A'}<br><br>`;
+
+    // Popup content building - RESTORED FULL DATA
+    let popupHTML = `<h3>${item.Activité}</h3>`;
+    popupHTML += `<strong>Objectifs:</strong> ${item.Objectifs || 'N/A'}<br><br>`;
+
+    // Restore Actors
+    if (item.ACTEURS) popupHTML += `<strong>Acteurs:</strong> ${item.ACTEURS}<br>`;
+
     popupHTML += `<strong>Type de contrôle:</strong> ${item['Type de contrôle'] || 'N/A'}<br>`;
+
+    // Risks / Gaps - restored
+    if (item['Gaps de contrôle potentiels ou risques']) {
+        popupHTML += `<br><strong>Risques/Gaps:</strong> ${item['Gaps de contrôle potentiels ou risques']}<br>`;
+    }
+
     popupHTML += `<div class="controle-popup">`;
-    if (item.Documentés) popupHTML += `Documentés: ${item.Documentés}<br>`;
-    if (item.Opérationnels) popupHTML += `Opérationnels: ${item.Opérationnels}<br>`;
+    if (item['Documentés (formel)']) popupHTML += `Documentés: ${item['Documentés (formel)']}<br>`;
+    if (item['Opérationnels (informel)']) popupHTML += `Opérationnels: ${item['Opérationnels (informel)']}<br>`;
+    if (item.Physique) popupHTML += `Physique: ${item.Physique}<br>`;
+    if (item.Automatisés) popupHTML += `Automatisés: ${item.Automatisés}<br>`;
     popupHTML += `</div>`;
-    
+
     card.dataset.popupContent = popupHTML;
 
     // Icon handling
     let iconClass = item.Icone || 'fa-cogs';
-    if(iconClass.startsWith('fa-')) iconClass = `fas ${iconClass}`;
-    
+    if (iconClass.startsWith('fa-')) iconClass = `fas ${iconClass}`;
+
+    // Inner HTML Structure - Restoring Localisation and Details teaser
     card.innerHTML = `
         <div class="actor-rectangle" style="display:none;"></div>
         <i class="${iconClass}"></i>
-        <div>${item.Activité}</div>
-        <div class="localisation" style="display:none;">
-            ${item.HQ ? '<i class="fas fa-building" title="Siège"></i>' : ''}
-            ${item.Coordination ? '<i class="fas fa-map-marker-alt" title="Coordination"></i>' : ''}
-            ${item.Base ? '<i class="fas fa-home" title="Base"></i>' : ''}
+        <div class="card-title">${item.Activité}</div>
+        
+        <div class="localisation">
+            ${item.HQ ? '<i class="fas fa-building" title="Siège"></i> ' : ''}
+            ${item.Coordination ? '<i class="fas fa-map-marker-alt" title="Coordination"></i> ' : ''}
+            ${item.Base ? '<i class="fas fa-home" title="Base"></i> ' : ''}
         </div>
-        <!-- Flèche animée si besoin (optionnelle) -->
     `;
-    
+
     return card;
 }
