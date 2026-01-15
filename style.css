@@ -30,12 +30,13 @@ body {
 .header {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    /* Left aligned */
+    justify-content: center;
+    /* Centered as requested */
     background: linear-gradient(135deg, var(--acf-blue), #004c91) !important;
     /* Blue background Forced */
     color: white;
-    text-align: left;
+    text-align: center;
+    /* Centered */
     padding: 5px 20px;
     /* Highly reduced padding */
     border-radius: 0 0 20px 20px;

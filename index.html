@@ -17,7 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=8">
 </head>
 
 <body>
@@ -25,6 +25,31 @@
     <div class="header">
         <img src="Logo_acf.png" alt="Logo ACF" class="logo">
         <h1>Processus Logistiques</h1>
+    </div>
+
+    <!-- Top Controls (Moved Up) -->
+    <div style="text-align: center; margin: 10px 0;">
+        <button id="toggleView" class="filters button"
+            style="background-color: var(--acf-orange); color: white;">Afficher toutes les activités</button>
+        <button id="toggleDarkMode" class="filters button" style="background-color: #333; color: white;">Mode
+            Sombre</button>
+        <button id="toggleAnalysis" class="filters button" style="background-color: var(--acf-blue); color: white;">
+            <i class="fas fa-chart-pie"></i> Mode Analyse
+        </button>
+    </div>
+
+    <!-- Analysis Legend (Hidden by default) -->
+    <div id="analysisLegend" class="filters"
+        style="display: none; justify-content: center; gap: 20px; font-size: 0.9em; margin-top: 5px; margin-bottom: 10px;">
+        <span style="display: flex; align-items: center;"><span
+                style="width: 15px; height: 15px; background: orange; margin-right: 5px; border-radius: 50%;"></span> HQ
+            Uniquement (A décentraliser ?)</span>
+        <span style="display: flex; align-items: center;"><span
+                style="width: 15px; height: 15px; background: #3498db; margin-right: 5px; border-radius: 50%;"></span>
+            Partagé (HQ + Terrain)</span>
+        <span style="display: flex; align-items: center;"><span
+                style="width: 15px; height: 15px; background: var(--acf-green); margin-right: 5px; border-radius: 50%;"></span>
+            Terrain (Optimisé)</span>
     </div>
 
     <div class="filters">
@@ -77,33 +102,6 @@
         </div>
     </div>
 
-    <div style="text-align: center; margin-bottom: 20px;">
-        <button id="toggleView" class="filters button"
-            style="background-color: var(--acf-orange); color: white;">Afficher toutes les activités</button>
-        <button id="toggleDarkMode" class="filters button" style="background-color: #333; color: white;">Mode
-            Sombre</button>
-        <button id="toggleAnalysis" class="filters button" style="background-color: var(--acf-blue); color: white;">
-            <i class="fas fa-chart-pie"></i> Mode Analyse
-        </button>
-    </div>
-
-    <!-- Analysis Legend (Hidden by default) -->
-    <div id="analysisLegend" class="filters"
-        style="display: none; justify-content: center; gap: 20px; font-size: 0.9em; margin-top: -15px;">
-        <span style="display: flex; align-items: center;"><span
-                style="width: 15px; height: 15px; background: orange; margin-right: 5px; border-radius: 50%;"></span> HQ
-            Uniquement (A décentraliser ?)</span>
-        <span style="display: flex; align-items: center;"><span
-                style="width: 15px; height: 15px; background: #3498db; margin-right: 5px; border-radius: 50%;"></span>
-            Partagé (HQ + Terrain)</span>
-        <span style="display: flex; align-items: center;"><span
-                style="width: 15px; height: 15px; background: var(--acf-green); margin-right: 5px; border-radius: 50%;"></span>
-            Terrain (Optimisé)</span>
-    </div>
-
-    <!-- Duplicate default image removed -->
-
-    <!-- Container pour les sections dynamiques -->
     <div id="logistics-sections-container">
         <!-- Les sections seront générées par le JS -->
     </div>
