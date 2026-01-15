@@ -255,6 +255,12 @@ h2::after {
     gap: 10px;
 }
 
+/* Adjust Loupe when actor banner is visible */
+.processus.search-active .blue-loupe {
+    top: 35px !important;
+    /* Push down below the actor banner */
+}
+
 .filters button {
     padding: 10px 20px;
     border: none;
