@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processus Logistiques - ACF</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -37,21 +37,22 @@
                 <input type="text" id="searchInput" placeholder="Rechercher un processus ou un acteur...">
             </div>
         </div>
-        
+
         <div class="search-help">
-             <p><strong>Astuce de recherche :</strong> filtrer par...</p>
-             <ul>
-                 <li>Activité (ex: préparation entrepôt)</li>
-                 <li>Acteurs (ex: gestionnaire stock)</li>
-                 <li>Type de contrôle (ex: documentés, opérationnels)</li>
-                 <li>Localisation (ex: HQ, Coordination, Base)</li>
-             </ul>
+            <p><strong>Astuce de recherche :</strong> filtrer par...</p>
+            <ul>
+                <li>Activité (ex: préparation entrepôt)</li>
+                <li>Acteurs (ex: gestionnaire stock)</li>
+                <li>Type de contrôle (ex: documentés, opérationnels)</li>
+                <li>Localisation (ex: HQ <i class="fas fa-building"></i>, Coordination <i
+                        class="fas fa-map-marker-alt"></i>, Base <i class="fas fa-home"></i>)</li>
+            </ul>
         </div>
     </div>
 
     <div class="filters">
         <button data-filter="all" class="active">Tous</button>
-        <button data-filter="Chaîne d'appovisionnement">Chaîne d'approvisionnement</button>    
+        <button data-filter="Chaîne d'appovisionnement">Chaîne d'approvisionnement</button>
         <button data-filter="Gestion de stocks">Gestion des stocks</button>
         <button data-filter="Gestion de achats">Gestion des achats</button>
         <button data-filter="Transport">Transport</button>
@@ -66,8 +67,10 @@
     </div>
 
     <div style="text-align: center; margin-bottom: 20px;">
-        <button id="toggleView" class="filters button" style="background-color: var(--acf-orange); color: white;">Afficher toutes les activités</button>
-        <button id="toggleDarkMode" class="filters button" style="background-color: #333; color: white;">Mode Sombre</button>
+        <button id="toggleView" class="filters button"
+            style="background-color: var(--acf-orange); color: white;">Afficher toutes les activités</button>
+        <button id="toggleDarkMode" class="filters button" style="background-color: #333; color: white;">Mode
+            Sombre</button>
     </div>
 
     <div class="default-image">
@@ -88,4 +91,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>

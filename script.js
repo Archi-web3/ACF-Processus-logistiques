@@ -129,23 +129,26 @@ btns.forEach(btn => {
     });
 });
 
-function attachSectionEvents(containerId, dataFilter) {
-    const container = document.getElementById(containerId);
-    if (!container) {
-        console.error(`Container with id "${containerId}" not found.`);
-        return;
-    }
+function attachSectionEvents(container) {
+    if (!container) return;
 
     container.querySelectorAll('.processus').forEach(processus => {
+        // Clone node to remove existing listeners if any (safety check) or just ensure single attachment
+        // simplified: just adding listener. logic elsewhere ensures we only call this once per section creation.
+
         processus.addEventListener('click', function (event) {
             event.stopPropagation();
             const actorRectangle = processus.querySelector('.actor-rectangle');
-            const popupContent = this.dataset.popupContent;
+            const popupContent = this.dataset.popupContent; // Use 'this' to refer to the clicked element
             const existingPopup = processus.querySelector('.popup');
 
             if (existingPopup) {
                 existingPopup.remove();
             } else {
+                // Close other popups first
+                document.querySelectorAll('.popup').forEach(p => p.remove());
+                document.querySelectorAll('.actor-rectangle').forEach(r => r.style.display = 'none');
+
                 const popupDiv = document.createElement('div');
                 popupDiv.classList.add('popup');
                 popupDiv.innerHTML = popupContent;
@@ -289,7 +292,7 @@ function createSection(container, sectionData, sectionTitle) {
     }
 
     container.appendChild(sectionContainer);
-    attachSectionEvents(sectionContainer.id || "logistics-sections-container");
+    attachSectionEvents(sectionContainer);
 }
 
 function createCard(item) {
