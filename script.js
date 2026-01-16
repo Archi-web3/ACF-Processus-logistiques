@@ -100,7 +100,12 @@ searchInput.addEventListener('input', function () {
 // Function to update process counter
 function updateProcessCounter() {
     const allProcessus = document.querySelectorAll('.processus');
-    const visibleProcessus = Array.from(allProcessus).filter(p => p.style.display !== 'none');
+    const visibleProcessus = Array.from(allProcessus).filter(p => {
+        const parentSection = p.closest('.section-container');
+        const isProcessusVisible = p.style.display !== 'none';
+        const isSectionVisible = !parentSection || parentSection.style.display !== 'none';
+        return isProcessusVisible && isSectionVisible;
+    });
 
     const visibleCountEl = document.getElementById('visibleCount');
     const totalCountEl = document.getElementById('totalCount');
