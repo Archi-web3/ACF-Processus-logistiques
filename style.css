@@ -276,11 +276,12 @@ h2::after {
     margin-right: 5px;
 }
 
-/* Status Badges on Cards */
+/* Status Badges on Cards - Bottom horizontal layout */
 .status-badge {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
     background: rgba(255, 255, 255, 0.95);
     color: var(--text-dark);
     padding: 3px 8px;
@@ -290,20 +291,34 @@ h2::after {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 5;
-    margin-bottom: 3px;
+    display: inline-block;
+    margin: 0 2px;
 }
 
-/* Stack badges vertically when multiple */
-.status-badge:nth-of-type(2) {
-    top: 30px;
+/* Horizontal stacking for multiple badges */
+.processus {
+    position: relative;
+    padding-bottom: 30px;
+    /* Extra space for badges */
 }
 
-.status-badge:nth-of-type(3) {
-    top: 52px;
+.status-badge:first-of-type {
+    left: auto;
+    right: auto;
+    transform: none;
+    position: relative;
+    display: inline-block;
 }
 
-.status-badge:nth-of-type(4) {
-    top: 74px;
+/* Container for badges at bottom */
+.processus::before {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    pointer-events: none;
 }
 
 .status-badge.physique {
