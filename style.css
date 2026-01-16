@@ -276,12 +276,21 @@ h2::after {
     margin-right: 5px;
 }
 
-/* Status Badges on Cards - Bottom horizontal layout */
-.status-badge {
+/* Badge Container - Bottom horizontal layout */
+.badge-container {
     position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    padding: 0 5px;
+}
+
+.status-badge {
     background: rgba(255, 255, 255, 0.95);
     color: var(--text-dark);
     padding: 3px 8px;
@@ -290,35 +299,13 @@ h2::after {
     font-weight: 600;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 5;
     display: inline-block;
-    margin: 0 2px;
 }
 
-/* Horizontal stacking for multiple badges */
+/* Ensure processus has space for badges */
 .processus {
     position: relative;
-    padding-bottom: 30px;
-    /* Extra space for badges */
-}
-
-.status-badge:first-of-type {
-    left: auto;
-    right: auto;
-    transform: none;
-    position: relative;
-    display: inline-block;
-}
-
-/* Container for badges at bottom */
-.processus::before {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    pointer-events: none;
+    padding-bottom: 28px;
 }
 
 .status-badge.physique {
