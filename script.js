@@ -414,6 +414,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 const processusData = groupedData[processus];
                 createSection(sectionsContainer, processusData, processus);
             }
+
+            // Build autocomplete suggestion index
+            const suggestions = new Set();
+            data.forEach(item => {
+                if (item.Activité) suggestions.add(item.Activité);
+                const actors = getActorsFromItem(item);
+                if (actors) actors.split(',').forEach(a => suggestions.add(a.trim()));
+                if (item['Type de contrôle']) suggestions.add(item['Type de contrôle']);
+            });
+            suggestionIndex = Array.from(suggestions);
         })
         .catch(error => console.error("Erreur:", error));
 
