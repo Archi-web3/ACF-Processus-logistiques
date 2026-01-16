@@ -255,6 +255,86 @@ h2::after {
     margin-bottom: 3px;
 }
 
+/* Search Dropdowns (History & Autocomplete) */
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.dropdown-header i {
+    margin-right: 5px;
+    color: var(--acf-blue);
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.clear-btn:hover {
+    color: var(--acf-orange);
+}
+
+.dropdown-list {
+    padding: 5px 0;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-item:hover,
+.dropdown-item.active {
+    background: #f5f5f5;
+}
+
+.dropdown-item i {
+    color: #999;
+    font-size: 0.9em;
+}
+
+.dropdown-item .highlight {
+    background: yellow;
+    font-weight: 600;
+}
+
+.dropdown-empty {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
 /* Process Counter Badge */
 .counter-badge {
     display: inline-block;

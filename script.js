@@ -45,8 +45,144 @@ document.addEventListener('click', function (event) {
     }
 });
 
+// ========== PHASE 2: ADVANCED SEARCH FEATURES ==========
+
+// Search History Management
+const HISTORY_KEY = 'acf_search_history';
+const MAX_HISTORY = 10;
+
+function saveSearchHistory(query) {
+    if (!query || query.trim() === '') return;
+
+    let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    // Remove if already exists
+    history = history.filter(item => item.query !== query);
+    // Add to beginning
+    history.unshift({ query, timestamp: Date.now() });
+    // Keep only last 10
+    history = history.slice(0, MAX_HISTORY);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+}
+
+function loadSearchHistory() {
+    return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+}
+
+function clearSearchHistory() {
+    localStorage.removeItem(HISTORY_KEY);
+    showSearchHistory();
+}
+
+function showSearchHistory() {
+    const history = loadSearchHistory();
+    const historyDropdown = document.getElementById('searchHistory');
+    const historyList = document.getElementById('historyList');
+
+    if (history.length === 0) {
+        historyList.innerHTML = '<div class="dropdown-empty">Aucun historique</div>';
+    } else {
+        historyList.innerHTML = history.map(item => `
+            <div class="dropdown-item" data-query="${item.query}">
+                <i class="fas fa-clock"></i>
+                <span>${item.query}</span>
+            </div>
+        `).join('');
+
+        // Add click handlers
+        historyList.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const query = item.dataset.query;
+                searchInput.value = query;
+                searchInput.dispatchEvent(new Event('input'));
+                historyDropdown.style.display = 'none';
+            });
+        });
+    }
+}
+
+// Autocomplete Suggestions
+let suggestionIndex = [];
+let currentSuggestionIndex = -1;
+
+function buildSuggestionIndex() {
+    const suggestions = new Set();
+
+    // This will be populated when data is loaded
+    // For now, return empty array
+    return Array.from(suggestions);
+}
+
+function showSuggestions(query) {
+    if (!query || query.length < 2) {
+        document.getElementById('suggestions').style.display = 'none';
+        return;
+    }
+
+    const matches = suggestionIndex
+        .filter(s => s.toLowerCase().includes(query.toLowerCase()))
+        .slice(0, 5);
+
+    const suggestionsDropdown = document.getElementById('suggestions');
+    const suggestionsList = document.getElementById('suggestionsList');
+
+    if (matches.length === 0) {
+        suggestionsDropdown.style.display = 'none';
+        return;
+    }
+
+    suggestionsList.innerHTML = matches.map((match, index) => {
+        const highlighted = match.replace(
+            new RegExp(query, 'gi'),
+            match => `<span class="highlight">${match}</span>`
+        );
+        return `
+            <div class="dropdown-item" data-index="${index}" data-suggestion="${match}">
+                <i class="fas fa-search"></i>
+                <span>${highlighted}</span>
+            </div>
+        `;
+    }).join('');
+
+    // Add click handlers
+    suggestionsList.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const suggestion = item.dataset.suggestion;
+            searchInput.value = suggestion;
+            searchInput.dispatchEvent(new Event('input'));
+            suggestionsDropdown.style.display = 'none';
+        });
+    });
+
+    suggestionsDropdown.style.display = 'block';
+    currentSuggestionIndex = -1;
+}
+
+// Search Input Event Handlers
 const searchInput = document.getElementById('searchInput');
+let searchTimeout;
+
+// Focus: show history
+searchInput.addEventListener('focus', () => {
+    if (searchInput.value === '') {
+        showSearchHistory();
+        document.getElementById('searchHistory').style.display = 'block';
+    }
+});
+
+// Input: show autocomplete with debounce
 searchInput.addEventListener('input', function () {
+    const query = this.value;
+
+    // Hide history when typing
+    document.getElementById('searchHistory').style.display = 'none';
+
+    // Debounce autocomplete
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        showSuggestions(query);
+    }, 300);
+
+    // Original search logic below
     const searchTerm = this.value.toLowerCase();
     const processusList = document.querySelectorAll('.processus');
 
@@ -96,6 +232,59 @@ searchInput.addEventListener('input', function () {
     // Update counter after search
     updateProcessCounter();
 });
+
+// Enter key: save to history
+searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        saveSearchHistory(searchInput.value);
+        document.getElementById('searchHistory').style.display = 'none';
+        document.getElementById('suggestions').style.display = 'none';
+    }
+
+    // Arrow key navigation for suggestions
+    const suggestionsDropdown = document.getElementById('suggestions');
+    if (suggestionsDropdown.style.display === 'block') {
+        const items = suggestionsDropdown.querySelectorAll('.dropdown-item');
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            currentSuggestionIndex = (currentSuggestionIndex + 1) % items.length;
+            updateSuggestionHighlight(items);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            currentSuggestionIndex = currentSuggestionIndex <= 0 ? items.length - 1 : currentSuggestionIndex - 1;
+            updateSuggestionHighlight(items);
+        } else if (e.key === 'Enter' && currentSuggestionIndex >= 0) {
+            e.preventDefault();
+            items[currentSuggestionIndex].click();
+        } else if (e.key === 'Escape') {
+            suggestionsDropdown.style.display = 'none';
+        }
+    }
+});
+
+function updateSuggestionHighlight(items) {
+    items.forEach((item, index) => {
+        item.classList.toggle('active', index === currentSuggestionIndex);
+    });
+}
+
+// Clear history button
+document.getElementById('clearHistory').addEventListener('click', (e) => {
+    e.stopPropagation();
+    clearSearchHistory();
+});
+
+// Close dropdowns on outside click
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-header')) {
+        document.getElementById('searchHistory').style.display = 'none';
+        document.getElementById('suggestions').style.display = 'none';
+    }
+});
+
+// ========== END PHASE 2 FEATURES ==========
+
 
 // Function to update process counter
 function updateProcessCounter() {
