@@ -258,14 +258,15 @@ h2::after {
 /* Search Dropdowns (History & Autocomplete) */
 .search-dropdown {
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    top: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    max-width: 90vw;
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    margin-top: 5px;
     max-height: 300px;
     overflow-y: auto;
     z-index: 1000;
