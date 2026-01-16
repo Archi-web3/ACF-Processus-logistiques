@@ -490,11 +490,10 @@ function createCard(item) {
         statusBadges.push('<div class="status-badge automatise">Automatisé</div>');
     }
 
-    const statusBadgeHTML = statusBadges.join('');
+    const statusBadgeHTML = statusBadges.length > 0 ? `<div class="badge-container">${statusBadges.join('')}</div>` : '';
 
     card.innerHTML = `
         <div class="actor-rectangle" style="display:none;"></div>
-        ${statusBadgeHTML}
         ${pdfIconHtml}
         <i class="${iconClass}"></i>
         <div class="card-title">${item.Activité}</div>
@@ -504,6 +503,7 @@ function createCard(item) {
             ${item.Coordination ? '<i class="fas fa-map-marker-alt" title="Coordination"></i> ' : ''}
             ${item.Base ? '<i class="fas fa-home" title="Base"></i> ' : ''}
         </div>
+        ${statusBadgeHTML}
     `;
 
     return card;
