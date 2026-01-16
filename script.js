@@ -164,6 +164,9 @@ btns.forEach(btn => {
                 sectionImageContainer.innerHTML = `<img src="Logo_acf.png" class="default-logo-search" alt="Logo ACF">`;
             }
         }
+
+        // Update counter after category filtering
+        updateProcessCounter();
     });
 });
 
@@ -434,12 +437,13 @@ function createCard(item) {
         popupHTML += `<br><strong>Risques/Gaps:</strong> ${item['Gaps de contrôle potentiels ou risques']}<br>`;
     }
 
-    popupHTML += `<div class="controle-popup">`;
-    if (item['Documentés (formel)']) popupHTML += `Documentés: ${item['Documentés (formel)']}<br>`;
-    if (item['Opérationnels (informel)']) popupHTML += `Opérationnels: ${item['Opérationnels (informel)']}<br>`;
-    if (item.Physique) popupHTML += `Physique: ${item.Physique}<br>`;
-    if (item.Automatisés) popupHTML += `Automatisés: ${item.Automatisés}<br>`;
-    popupHTML += `</div>`;
+    // Removed duplicate control type indicators - now shown as badges on card
+    // popupHTML += `<div class="controle-popup">`;
+    // if (item['Documentés (formel)']) popupHTML += `Documentés: ${item['Documentés (formel)']}<br>`;
+    // if (item['Opérationnels (informel)']) popupHTML += `Opérationnels: ${item['Opérationnels (informel)']}<br>`;
+    // if (item.Physique) popupHTML += `Physique: ${item.Physique}<br>`;
+    // if (item.Automatisés) popupHTML += `Automatisés: ${item.Automatisés}<br>`;
+    // popupHTML += `</div>`;
 
     card.dataset.popupContent = popupHTML;
 
@@ -461,22 +465,29 @@ function createCard(item) {
     // Inner HTML Structure
     // Restored Actor Banner as per user request
 
-    // Determine status badge
-    let statusBadge = '';
+    // Determine status badges (can have multiple)
+    let statusBadges = [];
     const typeControle = item['Type de contrôle'] || '';
-    if (typeControle.toLowerCase().includes('physique')) {
-        statusBadge = '<div class="status-badge physique">Physique</div>';
-    } else if (typeControle.toLowerCase().includes('documenté')) {
-        statusBadge = '<div class="status-badge documente">Documenté</div>';
-    } else if (typeControle.toLowerCase().includes('opérationnel')) {
-        statusBadge = '<div class="status-badge operationnel">Opérationnel</div>';
-    } else if (typeControle.toLowerCase().includes('automatisé')) {
-        statusBadge = '<div class="status-badge automatise">Automatisé</div>';
+    const typeControleLower = typeControle.toLowerCase();
+
+    if (typeControleLower.includes('physique')) {
+        statusBadges.push('<div class="status-badge physique">Physique</div>');
     }
+    if (typeControleLower.includes('documenté')) {
+        statusBadges.push('<div class="status-badge documente">Documenté</div>');
+    }
+    if (typeControleLower.includes('opérationnel')) {
+        statusBadges.push('<div class="status-badge operationnel">Opérationnel</div>');
+    }
+    if (typeControleLower.includes('automatisé')) {
+        statusBadges.push('<div class="status-badge automatise">Automatisé</div>');
+    }
+
+    const statusBadgeHTML = statusBadges.join('');
 
     card.innerHTML = `
         <div class="actor-rectangle" style="display:none;"></div>
-        ${statusBadge}
+        ${statusBadgeHTML}
         ${pdfIconHtml}
         <i class="${iconClass}"></i>
         <div class="card-title">${item.Activité}</div>
