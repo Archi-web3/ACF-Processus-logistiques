@@ -17,7 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=21">
+    <link rel="stylesheet" href="style.css?v=22">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
     <div class="header">
         <img src="Logo_acf.png" alt="Logo ACF" class="logo">
         <h1>Processus Logistiques</h1>
-        <span style="position: absolute; right: 20px; font-size: 0.6em; opacity: 0.7;">v21</span>
+        <span style="position: absolute; right: 20px; font-size: 0.6em; opacity: 0.7;">v22</span>
     </div>
 
     <!-- Filter Buttons (Moved to Top) -->
@@ -98,9 +98,24 @@
         </div>
     </div>
 
+    <!-- Process Counter -->
+    <div id="processCounter" style="text-align: center; margin: 5px 0;">
+        <span class="counter-badge">
+            <i class="fas fa-list"></i> Affichage de <strong id="visibleCount">0</strong>/<strong
+                id="totalCount">0</strong> processus
+        </span>
+    </div>
+
     <div id="logistics-sections-container">
         <!-- Les sections seront générées par le JS -->
     </div>
+
+    <script>
+        // Update counter on initial page load
+        window.addEventListener('load', () => {
+            setTimeout(updateProcessCounter, 500);
+        });
+    </script>
 
     <!-- Overlay pour afficher l'image en grand -->
     <div id="overlay" onclick="masquerImageEnGrand()">

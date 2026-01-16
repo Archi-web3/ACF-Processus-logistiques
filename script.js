@@ -92,7 +92,24 @@ searchInput.addEventListener('input', function () {
             localisationElement.style.display = 'none';
         }
     });
+
+    // Update counter after search
+    updateProcessCounter();
 });
+
+// Function to update process counter
+function updateProcessCounter() {
+    const allProcessus = document.querySelectorAll('.processus');
+    const visibleProcessus = Array.from(allProcessus).filter(p => p.style.display !== 'none');
+
+    const visibleCountEl = document.getElementById('visibleCount');
+    const totalCountEl = document.getElementById('totalCount');
+
+    if (visibleCountEl && totalCountEl) {
+        visibleCountEl.textContent = visibleProcessus.length;
+        totalCountEl.textContent = allProcessus.length;
+    }
+}
 
 const btns = document.querySelectorAll('.filters button');
 
@@ -443,8 +460,23 @@ function createCard(item) {
 
     // Inner HTML Structure
     // Restored Actor Banner as per user request
+
+    // Determine status badge
+    let statusBadge = '';
+    const typeControle = item['Type de contrôle'] || '';
+    if (typeControle.toLowerCase().includes('physique')) {
+        statusBadge = '<div class="status-badge physique">Physique</div>';
+    } else if (typeControle.toLowerCase().includes('documenté')) {
+        statusBadge = '<div class="status-badge documente">Documenté</div>';
+    } else if (typeControle.toLowerCase().includes('opérationnel')) {
+        statusBadge = '<div class="status-badge operationnel">Opérationnel</div>';
+    } else if (typeControle.toLowerCase().includes('automatisé')) {
+        statusBadge = '<div class="status-badge automatise">Automatisé</div>';
+    }
+
     card.innerHTML = `
         <div class="actor-rectangle" style="display:none;"></div>
+        ${statusBadge}
         ${pdfIconHtml}
         <i class="${iconClass}"></i>
         <div class="card-title">${item.Activité}</div>
