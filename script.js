@@ -102,8 +102,10 @@ function updateProcessCounter() {
     const allProcessus = document.querySelectorAll('.processus');
     const visibleProcessus = Array.from(allProcessus).filter(p => {
         const parentSection = p.closest('.section-container');
+        // Processus is visible if style.display is not 'none'
         const isProcessusVisible = p.style.display !== 'none';
-        const isSectionVisible = !parentSection || parentSection.style.display !== 'none';
+        // Section is visible if display is 'block' or empty (default)
+        const isSectionVisible = !parentSection || (parentSection.style.display === 'block' || parentSection.style.display === '');
         return isProcessusVisible && isSectionVisible;
     });
 
