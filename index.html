@@ -17,7 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=28">
+    <link rel="stylesheet" href="style.css?v=29">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
     <div class="header">
         <img src="Logo_acf.png" alt="Logo ACF" class="logo">
         <h1>Processus Logistiques</h1>
-        <span style="position: absolute; right: 20px; font-size: 0.6em; opacity: 0.7;">v28</span>
+        <span style="position: absolute; right: 20px; font-size: 0.6em; opacity: 0.7;">v29</span>
     </div>
 
     <!-- Filter Buttons (Moved to Top) -->
@@ -80,6 +80,22 @@
                 <div class="search-bar">
                     <input type="text" id="searchInput" placeholder="Rechercher...">
                 </div>
+
+                <!-- Search History Dropdown -->
+                <div id="searchHistory" class="search-dropdown" style="display: none;">
+                    <div class="dropdown-header">
+                        <span><i class="fas fa-history"></i> Historique de recherche</span>
+                        <button id="clearHistory" class="clear-btn" title="Effacer l'historique">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div id="historyList" class="dropdown-list"></div>
+                </div>
+
+                <!-- Autocomplete Suggestions -->
+                <div id="suggestions" class="search-dropdown" style="display: none;">
+                    <div class="dropdown-list" id="suggestionsList"></div>
+                </div>
             </div>
             <div class="help-container">
                 <button id="helpBtn" class="help-button" title="Astuces de recherche">
@@ -95,22 +111,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <!-- Search History Dropdown -->
-        <div id="searchHistory" class="search-dropdown" style="display: none;">
-            <div class="dropdown-header">
-                <span><i class="fas fa-history"></i> Historique de recherche</span>
-                <button id="clearHistory" class="clear-btn" title="Effacer l'historique">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-            <div id="historyList" class="dropdown-list"></div>
-        </div>
-
-        <!-- Autocomplete Suggestions -->
-        <div id="suggestions" class="search-dropdown" style="display: none;">
-            <div class="dropdown-list" id="suggestionsList"></div>
         </div>
     </div>
 
