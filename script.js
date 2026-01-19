@@ -5,6 +5,20 @@ toggleDarkMode.addEventListener('click', () => {
     toggleDarkMode.textContent = document.body.classList.contains('dark-mode') ? 'Mode Clair' : 'Mode Sombre';
 });
 
+// Toggle Badges Visibility
+const toggleBadges = document.getElementById('toggleBadges');
+let badgesVisible = true;
+
+toggleBadges.addEventListener('click', () => {
+    badgesVisible = !badgesVisible;
+    const badgeContainers = document.querySelectorAll('.badge-container');
+    badgeContainers.forEach(container => {
+        container.style.display = badgesVisible ? 'flex' : 'none';
+    });
+    toggleBadges.textContent = badgesVisible ? 'Masquer les badges' : 'Afficher les badges';
+});
+
+
 // Help Tooltip Logic
 const helpBtn = document.getElementById('helpBtn');
 const helpTooltip = document.getElementById('helpTooltip');
